@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Partner Form View -->
+		<record id="view_partner_form" model="ir.ui.view">
+			<field name="name">res.partner.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<page string="Sales &amp; Purchases" position="replace"/>
+				<notebook position="inside">
+					<page string="Datos">
+						<field name="actividad"/>
+						<field name="riesgo"/>
+						<field name="comentarios" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
+							<tree string="Comentarios">
+								<field name="fecha_creacion" string="Fecha"/>
+								<field name="texto" string="Nota"/>
+							</tree>
+						</field>
+					</page>
+				</notebook>
+			</field>
+		</record>
+		<!-- Partner Tree View -->
+		<record id="view_partner_tree" model="ir.ui.view">
+			<field name="name">res.partner.tree.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="base.view_partner_tree"/>
+			<field name="arch" type="xml">
+				<field name="ref" position="replace"/>
+				<field name="country" position="replace"/>
+			</field>
+		</record>
+		<!-- Cliente Action -->
+		<record model="ir.actions.act_window" id="action_cliente_form">
+			<field name="name">res.partner</field>
+			<field name="res_model">res.partner</field>
+		</record>
+		<menuitem name="Maquipal" icon="terp-project" id="menu_maquipal" />
+		<menuitem name="Clientes" parent="menu_maquipal" id="menu_maquipal_lista" action="action_cliente_form" />
+	</data>
+</openerp>
+
