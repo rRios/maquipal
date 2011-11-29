@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from osv import fields, osv
-from datetime import datetime
 
 class res_partner(osv.osv):
     _name = 'res.partner'
