@@ -12,11 +12,13 @@
         'mail_gateway',
         'base_calendar',
         'resource',
+        'product',
     ],
     'init_xml': [],
     'update_xml': [
         'view/maquipal_partner_view.xml',
         'view/maquipal_comentarios_visita_view.xml',
+        'view/maquipal_maquina_view.xml',
     ],
     'demo_xml': [],
     'test': [],

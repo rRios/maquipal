@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Maquina Form View -->
+		<record id="product_normal_form_view" model="ir.ui.view">
+			<field name="name">product.normal.form.inherit</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view"/>
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="Maquina">
+						<field name="modelo"/>
+						<field name="serie"/>
+						<field name="mod_motor"/>
+						<field name="serie_motor"/>
+						<field name="mod_convertidor"/>
+						<field name="serie_convertidor"/>
+						<field name="f_combustible"/>
+						<field name="f_aceite"/>
+						<field name="f_aire_ext"/>
+						<field name="f_aire_int"/>
+						<field name="f_hidraulico"/>
+						<field name="f_convertidor"/>
+						<field name="t_dientes"/>
+						<field name="correa_alter"/>
+						<field name="correa_venti"/>
+						<field name="alternador"/>
+						<field name="m_arranque"/>
+						<field name="comentarios"/>
+					</page>
+				</notebook>
+			</field>
+		</record>
+		<!-- Maquina Tree View -->
+		<record id="product_product_tree_view" model="ir.ui.view">
+			<field name="name">product.product.tree.inherit</field>
+			<field name="model">product.product</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="product.product_product_tree_view"/>
+			<field name="arch" type="xml">
+				<field name="uom_id" position="replace"/>
+				<field name="virtual_available" position="replace"/>
+				<field name="state" position="replace"/>
+			</field>
+		</record>
+		<!-- Maquina Action -->
+		<record model="ir.actions.act_window" id="action_maquina_form">
+			<field name="name">product.product</field>
+			<field name="res_model">product.product</field>
+		</record>
+		<menuitem name="Maquinas" parent="menu_maquipal" id="menu_maquipal_maquinas" action="action_maquina_form" />
+	</data>
+</openerp>
+
