@@ -24,6 +24,9 @@ class product_product(osv.osv):
         'correa_venti': fields.char('Correa Ventilador', size=64),
         'alternador': fields.char('Alternador', size=64),
         'm_arranque': fields.char('M. Arranque', size=64),
+        'ruedas': fields.char('Ruedas', size=64),
+        'mastil': fields.char('Mastil', size=64),
+        'bateria': fields.char('Bateria', size=64),
         'comentarios': fields.text('Comentarios'),
     }
 

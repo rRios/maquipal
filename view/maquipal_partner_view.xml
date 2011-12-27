@@ -7,7 +7,7 @@
 			<field name="model">res.partner</field>
 			<field name="inherit_id" ref="base.view_partner_form"/>
 			<field name="arch" type="xml">
-				<page string="Sales &amp; Purchases" position="replace"/>
+				<!-- <page string="Sales &amp; Purchases" position="replace"/> -->
 				<notebook position="inside">
 					<page string="Datos">
 						<field name="actividad"/>
@@ -18,6 +18,11 @@
 								<field name="texto" string="Nota"/>
 							</tree>
 						</field>
+						<!-- <field name="maquinas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
+							<tree string="Maquinas">
+								<field name="maquinas" string="Nombre"/>
+							</tree>
+						</field> -->
 					</page>
 				</notebook>
 			</field>

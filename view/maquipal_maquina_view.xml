@@ -7,6 +7,19 @@
 			<field name="model">product.product</field>
 			<field name="inherit_id" ref="product.product_normal_form_view"/>
 			<field name="arch" type="xml">
+				<separator string="Characteristics" position="replace" />
+				<field name="sale_ok" position="replace" />
+				<field name="purchase_ok" position="replace" />
+
+				<separator string="Codes" position="replace" />
+				<field name="default_code" position="replace" />
+				<field name="ean13" position="replace" />
+				
+				<page string="Information" position="replace" />
+				<page string="Procurement &amp; Locations" position="replace" />
+				<page string="Suppliers" position="replace" />
+				<page string="Descriptions" position="replace" />
+				<page string="Packaging" position="replace" />
 				<notebook position="inside">
 					<page string="Maquina">
 						<field name="modelo"/>
@@ -26,6 +39,9 @@
 						<field name="correa_venti"/>
 						<field name="alternador"/>
 						<field name="m_arranque"/>
+						<field name="ruedas"/>
+						<field name="mastil"/>
+						<field name="bateria"/>
 						<field name="comentarios"/>
 					</page>
 				</notebook>
@@ -38,9 +54,20 @@
 			<field name="type">tree</field>
 			<field name="inherit_id" ref="product.product_product_tree_view"/>
 			<field name="arch" type="xml">
+				<field name="default_code" position="replace" />
+				<field name="variants" position="replace" />
 				<field name="uom_id" position="replace"/>
+				<field name="type" position="replace" />
+				<field name="qty_available" position="replace" />
 				<field name="virtual_available" position="replace"/>
+				<field name="lst_price" position="replace" />
+				<field name="price" position="replace" />
+				<field name="standard_price" position="replace" />
 				<field name="state" position="replace"/>
+				<tree string="Products" position="inside">
+					<field name="modelo" />
+					<field name="serie" />
+				</tree>
 			</field>
 		</record>
 		<!-- Maquina Action -->
