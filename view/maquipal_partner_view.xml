@@ -1,23 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
+		<!-- <record id="view_partner_property_form" model="ir.ui.view">
+			<field name="name">res.partner.product.property.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<page string="Sales &amp; Purchases" position="replace" />
+			</field>
+		</record> -->
+
 		<!-- Partner Form View -->
 		<record id="view_partner_form" model="ir.ui.view">
 			<field name="name">res.partner.form.inherit</field>
 			<field name="model">res.partner</field>
 			<field name="inherit_id" ref="base.view_partner_form"/>
 			<field name="arch" type="xml">
-				<!-- <page string="Sales &amp; Purchases" position="replace"/> -->
+				<field name="ref" position="replace" />
+				<field name="lang" position="replace" />
+				<field name="title" position="replace" />
+				<field name="customer" position="replace" />
+				<field name="supplier" position="replace" />
+
+				<field name="type" position="replace" />
+				<field name="country_id" position="replace" />
+				<field name="state_id" position="replace" />
+
+				<separator string="Categories" position="replace" />
+				<field name="category_id" position="replace" />
+				
+				<field name="name" position="after">	
+					<field name="actividad"/>
+					<field name="riesgo"/>
+				</field>
+				
+				<separator string="General Information" position="replace" />
+				<field name="user_id" position="replace" />
+				<field name="active" position="replace" />
+				<field name="website" position="replace" />
+				<field name="date" position="replace" />
+				<field name="parent_id" position="replace" />
+				<field name="company_id" position="replace" />
+
+				<!-- <page string="Sales &amp; Purchases" position="replace" /> -->
+				<!-- <page string="History" position="replace" /> -->
 				<notebook position="inside">
-					<page string="Datos">
-						<field name="actividad"/>
-						<field name="riesgo"/>
+					<!-- <page string="General" position="inside">
+						<form string="Partner Contacts" position="inside">
+							<field name="street" position="after">
+								<field name="ultima_visita" string="Ultima Visita" />
+							</field>
+						</form>
+					</page> -->					
+					<page string="Visitas">
+						<field name="ultima_visita" string="Ultima Visita"/>
+						<field name="pruebas" string="Pruebas"/>
 						<field name="comentarios" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
-							<tree string="Comentarios">
+							<tree string="Comentarios de visitas">
 								<field name="fecha_creacion" string="Fecha"/>
 								<field name="texto" string="Nota"/>
 							</tree>
 						</field>
+					
 						<!-- <field name="maquinas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
 							<tree string="Maquinas">
 								<field name="maquinas" string="Nombre"/>

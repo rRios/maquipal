@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from osv import osv, fields
+import datetime
 import time
 
 class maquipal_comentarios_visita(osv.osv):
@@ -12,7 +13,7 @@ class maquipal_comentarios_visita(osv.osv):
         'partner_id': fields.many2one('res.partner', 'Cliente', readonly=True),
     }
     _defaults = {
-        'fecha_creacion': lambda *a: time.strftime('%d-%m-%Y'),
+        'fecha_creacion': lambda *a: time.strftime("%d/%m/%Y"),
     }
 
 maquipal_comentarios_visita()
