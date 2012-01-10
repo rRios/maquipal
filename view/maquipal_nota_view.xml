@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Nota Form View -->
+		<record id="view_nota_form" model="ir.ui.view">
+			<field name="name">maquipal.nota.form</field>
+			<field name="model">maquipal.nota</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Notas">
+					<field name="cliente_id" string="Cliente" on_change="onchange_partner_id(cliente_id, phone)"/>
+					<field name="phone" string="Telefono" />
+					<field name="contacto" string="Contacto" />
+					<field name="maquina" string="Maquina" on_change="onchange_maquina_id(maquina)" />
+					<field name="modelo" string="Modelo" />
+					<field name="serie" string="Serie" />
+				</form>
+			</field>
+		</record>
+
+		<!-- Nota Tree View -->
+		<record id="view_nota_tree" model="ir.ui.view">
+			<field name="name">maquipal.nota.tree</field>
+			<field name="model">maquipal.nota</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Notas" position="inside">
+					<field name="cliente_id" />
+					<field name="phone" />
+					<field name="maquina" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Nota Action -->
+		<record model="ir.actions.act_window" id="action_nota_form">
+			<field name="name">maquipal.nota</field>
+			<field name="res_model">maquipal.nota</field>
+		</record>
+		<menuitem name="Notas" parent="menu_maquipal" id="menu_maquipal_notas" action="action_nota_form" />
+	</data>
+</openerp>

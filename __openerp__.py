@@ -19,6 +19,7 @@
         'view/maquipal_partner_view.xml',
         'view/maquipal_comentarios_visita_view.xml',
         'view/maquipal_maquina_view.xml',
+        'view/maquipal_nota_view.xml',
     ],
     'demo_xml': [],
     'test': [],

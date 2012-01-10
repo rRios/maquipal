@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from osv import osv, fields
-import datetime
 import time
 
 class maquipal_comentarios_visita(osv.osv):
