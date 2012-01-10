@@ -20,20 +20,30 @@
 				<page string="Suppliers" position="replace" />
 				<page string="Descriptions" position="replace" />
 				<page string="Packaging" position="replace" />
+				<field name="name" position="after">
+					<field name="modelo" />
+					<field name="serie" />
+				</field>
 				<notebook position="inside">
-					<page string="Maquina">
-						<field name="modelo"/>
-						<field name="serie"/>
-						<field name="mod_motor"/>
-						<field name="serie_motor"/>
-						<field name="mod_convertidor"/>
-						<field name="serie_convertidor"/>
+					<page string="Caracteristicas">
+						<group colspan="2" col="2">
+							<separator string="Motor" colspan="4" col="4"/>
+							<field name="mod_motor"/>
+							<field name="serie_motor"/>
+						</group>
+						<group colspan="2" col="2">
+							<separator string="Convertidor" colspan="4"/>
+							<field name="mod_convertidor"/>
+							<field name="serie_convertidor"/>
+						</group>
+						<separator string="Filtros" colspan="4"/>
 						<field name="f_combustible"/>
 						<field name="f_aceite"/>
 						<field name="f_aire_ext"/>
 						<field name="f_aire_int"/>
 						<field name="f_hidraulico"/>
 						<field name="f_convertidor"/>
+						<separator string="Otros" colspan="4"/>
 						<field name="t_dientes"/>
 						<field name="correa_alter"/>
 						<field name="correa_venti"/>
@@ -42,6 +52,8 @@
 						<field name="ruedas"/>
 						<field name="mastil"/>
 						<field name="bateria"/>
+					</page>
+					<page string="Comentarios">
 						<field name="comentarios"/>
 					</page>
 				</notebook>
