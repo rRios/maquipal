@@ -20,10 +20,20 @@
 				<page string="Suppliers" position="replace" />
 				<page string="Descriptions" position="replace" />
 				<page string="Packaging" position="replace" />
-				<field name="name" position="after">
-					<field name="modelo" />
-					<field name="serie" />
-				</field>
+
+				<separator string="Name" position="replace" />
+				<field name="name" position="replace" />
+
+				<group colspan="4" col="6">
+					<separator string="Maquina" colspan="6" />
+					<newline />
+					<field name="name" colspan="2" />
+					<field name="modelo" colspan="2" />
+					<field name="serie" colspan="2" />
+					<newline />
+					<field name="cliente_id" colspan="6" />
+				</group>
+					
 				<notebook position="inside">
 					<page string="Caracteristicas">
 						<group colspan="2" col="2">
@@ -77,6 +87,7 @@
 				<field name="standard_price" position="replace" />
 				<field name="state" position="replace"/>
 				<tree string="Products" position="inside">
+					<field name="cliente_id" />
 					<field name="modelo" />
 					<field name="serie" />
 				</tree>
