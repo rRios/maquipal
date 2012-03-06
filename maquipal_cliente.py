@@ -24,7 +24,7 @@ class res_partner(osv.osv):
         'actividad': fields.char('Actividad', size=64),
         'riesgo': fields.char('Riesgo', size=64),
         'comentarios': fields.one2many('maquipal.comentarios.visita','partner_id','Comentarios'),
-        #'ultima_visita': fields.date('Ultima Visita', readonly=True),
+        'maquinas': fields.one2many('product.product', 'cliente_id', 'Maquinas'),
         'ultima_visita': fields.function(get_fecha_ultima_visita, type='char', size=64, method=True),
         'pruebas': fields.function(get_fecha_ultima_visita, type='char', size=64,  method=True),
         #'pruebas': fields.char('Pruebas', size=64),
@@ -35,3 +35,18 @@ class res_partner(osv.osv):
     }
     
 res_partner()
+
+
+class maquipal_comentarios_visita(osv.osv):
+    _name = 'maquipal.comentarios.visita'
+    _description = "Comentarios de la visita"
+    _columns = {
+        'fecha_creacion': fields.date('Fecha', readonly=True, select=True),
+        'texto': fields.text('Comentarios'),
+        'partner_id': fields.many2one('res.partner', 'Cliente', readonly=True),
+    }
+    _defaults = {
+        'fecha_creacion': lambda *a: time.strftime("%d/%m/%Y"),
+    }
+
+maquipal_comentarios_visita()

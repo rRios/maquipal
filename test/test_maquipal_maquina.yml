@@ -1,0 +1,30 @@
+-   |
+    Creamos un nuevo cliente
+-
+    !record {model: res.partner, id: maquipal_cliente2}:
+        name: "Cliente 2"
+        actividad: "Actividad Cliente 2"
+        riesgo: "Riesgo Cliente 2"
+        address: 
+            - name: "Contacto Cliente 2"
+              title: base.res_partner_title_sir
+              function: "Administrador" 
+              street: "calle 1"
+              street2: "calle 2"
+              zip: "445567"
+              city: "Bollullos"
+              phone: "+34 66666666"
+              mobile: "+32 00000000"
+              fax: "+34 555555555"
+              email: "test2@test.com"
+        #Falta History con los mails
+        comment: "Comentarios Cliente 2"
+
+-   |
+    Creamos una nueva maquina, con cliente maquipal_cliente2
+-
+    !record {model: product.product, id: maquipal_maquina1}:
+        name: "Nueva Maquina"
+        modelo: "Nuevo Modelo"
+        serie: "Nueva Serie"
+        cliente_id: maquipal_cliente2

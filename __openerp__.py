@@ -17,12 +17,15 @@
     'init_xml': [],
     'update_xml': [
         'view/maquipal_partner_view.xml',
-        'view/maquipal_comentarios_visita_view.xml',
         'view/maquipal_maquina_view.xml',
         'view/maquipal_nota_view.xml',
     ],
     'demo_xml': [],
-    'test': [],
+    'test': [
+            'test/test_maquipal_cliente.yml',
+            'test/test_maquipal_maquina.yml',
+            'test/test_maquipal_nota.yml',
+            ],
     'installable': True,
     'active': False,
 }

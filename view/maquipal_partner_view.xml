@@ -45,14 +45,7 @@
 
 				<!-- <page string="Sales &amp; Purchases" position="replace" /> -->
 				<!-- <page string="History" position="replace" /> -->
-				<notebook position="inside">
-					<!-- <page string="General" position="inside">
-						<form string="Partner Contacts" position="inside">
-							<field name="street" position="after">
-								<field name="ultima_visita" string="Ultima Visita" />
-							</field>
-						</form>
-					</page> -->					
+				<notebook position="inside">				
 					<page string="Visitas">
 						<field name="ultima_visita" string="Ultima Visita"/>
 						<field name="pruebas" string="Pruebas"/>
@@ -62,12 +55,20 @@
 								<field name="texto" string="Nota"/>
 							</tree>
 						</field>
-					
-						<!-- <field name="maquinas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
+					</page>
+					<page string="Maquinas">
+						<field name="maquinas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
 							<tree string="Maquinas">
-								<field name="maquinas" string="Nombre"/>
+								<field name="name" string="Nombre"/>
+								<field name="modelo" string="Modelo"/>
+								<field name="serie" string="Serie"/>
+								<!-- <button name="crear_nota"
+									string="Crear Nota"
+									help="Crear Nota"
+									icon="gtk-go-forward"
+									type="object"/> -->
 							</tree>
-						</field> -->
+						</field>
 					</page>
 				</notebook>
 			</field>

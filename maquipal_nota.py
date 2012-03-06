@@ -37,6 +37,13 @@ class maquipal_nota(osv.osv):
         return {'value': {'email_from': address.email, 'phone': address.phone, 'contacto': address.name}}
 
     def onchange_maquina_id(self, cr, uid, ids, maq):
+        """This function returns value of modelo and serie based on maquina id
+        @param self: the object pointer
+        @param cr: the current row, from the database cursor
+        @param uid: the current user's ID for security checks
+        @param ids: list of case IDs
+        @param maq Id of maquina
+        """
         if not maq:
             return {'value': {}}
         maquina = self.pool.get('product.product').browse(cr, uid, maq)
@@ -51,6 +58,7 @@ class maquipal_nota(osv.osv):
         'maquina': fields.many2one('product.product', 'Maquina'),
         'modelo': fields.char('Modelo', size=64),
         'serie': fields.char('Serie', size=64),
+        'tema': fields.char('Tema', size=64),
     }
     _defaults = {
         #'telefono': _get_default_telefono,

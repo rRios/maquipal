@@ -1,0 +1,82 @@
+-   |
+    Creamos un nuevo cliente
+-
+    !record {model: res.partner, id: maquipal_cliente3}:
+        name: "Cliente 3"
+        actividad: "Actividad Cliente 3"
+        riesgo: "Riesgo Cliente 3"
+        address: 
+            - name: "Contacto Cliente 3"
+              title: base.res_partner_title_sir
+              function: "Comercial" 
+              street: "calle cliente 3"
+              street2: "calle 2 cliente 3"
+              zip: "447777"
+              city: "Paris"
+              phone: "+34 33333333"
+              mobile: "+32 44444444"
+              fax: "+34 00000000"
+              email: "test3@test.com"
+        #Falta History con los mails
+        comment: "Comentarios Cliente 3"
+
+-   |
+    Creamos una nueva maquina asociada a maquipal_cliente3
+-
+    !record {model: product.product, id: maquipal_maquina3}:
+        name: "Nueva Maquina de cliente3"
+        modelo: "Nuevo Modelo cliente3"
+        serie: "Nueva Serie cliente3"
+        cliente_id: maquipal_cliente3
+
+-   |
+    Creamos una nota con valores ficticios (sacados de tests anteriores -CAMBIAR-)
+-
+    !record {model: maquipal.nota, id: maquipal_nota1}:
+        cliente_id: maquipal_cliente3
+        phone: "000000"
+        contacto: "000000"
+        maquina: maquipal_maquina3
+        modelo: "000000"
+        serie: "000000"
+        tema: "weeeee"
+
+-   |
+    Comprobamos que los valores son los que se han definido
+-
+    !python {model: maquipal.nota}: |
+        lanota = self.browse(cr, uid, ref('maquipal_nota1'))
+        assert lanota.cliente_id.name == "Cliente 3"
+        assert lanota.phone == "000000"
+        assert lanota.contacto == "000000"
+        assert lanota.maquina.name == "Nueva Maquina de cliente3"
+        assert lanota.modelo == "000000"
+        assert lanota.serie == "000000"
+
+-   |
+    Llamamos a onchange_partner_id para actualizar los datos del cliente
+-
+    !python {model: maquipal.nota}: |
+        lanota = self.browse(cr, uid, ref('maquipal_nota1'))
+        ladireccion = lanota.onchange_partner_id(lanota.cliente_id.id).get('value',{})
+        lanota.write(ladireccion)
+
+-   |
+    Llamamos a onchange_maquina_id para actualizar los datos de la maquina
+-
+    !python {model: maquipal.nota}: |
+        lanota = self.browse(cr, uid, ref('maquipal_nota1'))
+        lamaquina = lanota.onchange_maquina_id(lanota.maquina.id).get('value',{})
+        lanota.write(lamaquina)
+
+-   |
+    Comprobamos que los valores se han actualizado
+-
+    !python {model: maquipal.nota}: |
+        lanota = self.browse(cr, uid, ref('maquipal_nota1'))
+        assert lanota.cliente_id.name == "Cliente 3"
+        assert lanota.phone == "+34 33333333"
+        assert lanota.contacto == "Contacto Cliente 3"
+        assert lanota.maquina.name == "Nueva Maquina de cliente3"
+        assert lanota.modelo == "Nuevo Modelo cliente3"
+        assert lanota.serie == "Nueva Serie cliente3"

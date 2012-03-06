@@ -31,7 +31,11 @@
 					<field name="modelo" colspan="2" />
 					<field name="serie" colspan="2" />
 					<newline />
-					<field name="cliente_id" colspan="6" />
+					<field name="cliente_id" colspan="2" />
+					<button name="crear_nota_desde_maquina"
+						string="Crear Nota"
+						icon="gtk-go-forward"
+						type="object" />
 				</group>
 					
 				<notebook position="inside">

@@ -1,0 +1,99 @@
+-   |
+    El orden es importante en la ejecucion de los tests. Este es el primero.
+    Creamos un nuevo cliente. Solo habría que testear los campos nuevos.
+-
+    !record {model: res.partner, id: maquipal_cliente1}:
+        name: "Cliente 1"
+        actividad: "Actividad Cliente 1"
+        riesgo: "Riesgo Cliente 1"
+        address: 
+            - name: "Contacto Cliente 1"
+              title: base.res_partner_title_sir
+              function: "Comercial" 
+              street: "street 1"
+              street2: "street 2"
+              zip: "445567"
+              city: "Cuenca"
+              phone: "+34 555666999"
+              mobile: "+32 666999888"
+              fax: "+34 555555555"
+              email: "test@test.com"
+        #Falta History con los mails
+        comment: "Comentarios Cliente 1"
+
+-   |
+    Creamos un comentario de visita para maquipal_cliente1
+-
+    !record {model: maquipal.comentarios.visita, id: comentario_visita_1}:
+        fecha_creacion: !eval time.strftime('%Y-%m-%d 16:04:00')
+        texto: "Comentarios de la visita"
+        partner_id: maquipal_cliente1
+
+-   |
+    Creamos un segundo comentario
+-
+    !record {model: maquipal.comentarios.visita, id: comentario_visita_2}:
+        fecha_creacion: !eval time.strftime('2012-03-01 18:04:00')
+        texto: "Otro comentario"
+        partner_id: maquipal_cliente1
+
+-   |
+    Comprobamos que 'ultima_visita' coincida con la fecha de creacion de comentario_visita_2
+-
+    !python {model: res.partner}: |
+        cliente = self.browse(cr, uid, ref('maquipal_cliente1'))
+        #es nuestro cliente
+        assert cliente.name=="Cliente 1"
+
+        #tiene 2 comentarios de visita
+        assert len(cliente.comentarios)==2
+
+        #ultima_visita muestra la fecha correcta
+        import time
+        #no es la fecha del primer comentario
+        assert cliente.ultima_visita != time.strftime("%d/%m/%Y",time.strptime(cliente.comentarios[0].fecha_creacion,"%Y-%m-%d"))
+        #es la fecha del segundo
+        assert cliente.ultima_visita == time.strftime("%d/%m/%Y",time.strptime(cliente.comentarios[1].fecha_creacion,"%Y-%m-%d"))
+
+-   |
+    Borramos la ultima visita
+-
+    !delete {model: maquipal.comentarios.visita, search: "[('texto', '=', 'Otro comentario')]"}
+
+-   |
+    ultima_visita es ahora la fecha del primer comentario
+-
+    !python {model: res.partner}: |
+        cliente = self.browse(cr, uid, ref('maquipal_cliente1'))
+        #es nuestro cliente
+        assert cliente.name=="Cliente 1"
+
+        #tiene 1 comentarios de visita
+        assert len(cliente.comentarios)==1
+
+        #ultima_visita muestra la fecha correcta
+        import time
+        #es la fecha del primer comentario
+        assert cliente.ultima_visita == time.strftime("%d/%m/%Y",time.strptime(cliente.comentarios[0].fecha_creacion,"%Y-%m-%d"))
+
+-   |
+    Creamos una nueva maquina asociada a maquipal_cliente1
+-
+    !record {model: product.product, id: maquipal_maquina1}:
+        name: "Nueva Maquina"
+        modelo: "Nuevo Modelo"
+        serie: "Nueva Serie"
+        cliente_id: maquipal_cliente1
+
+-   |
+    Comprobamos que maquipal_maquina1 aparece en el listado de maquinas de maquipal_cliente1
+-   
+    !python {model: res.partner}: |
+        cliente = self.browse(cr, uid, ref('maquipal_cliente1'))
+        #es nuestro cliente
+        assert cliente.name=="Cliente 1"
+
+        #tiene 1 maquina asociada
+        assert len(cliente.maquinas)==1
+        #de nombre Nueva Maquina
+        assert cliente.maquinas[0].name=="Nueva Maquina"
