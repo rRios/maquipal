@@ -2,6 +2,7 @@
 
 from osv import fields, osv
 import time
+import pdb
 
 class res_partner(osv.osv):
     def get_fecha_ultima_visita(self, cr, uid, ids, field_name, arg, context):
@@ -33,7 +34,49 @@ class res_partner(osv.osv):
         #'ultima_visita': lambda *a: time.strftime('%d-%m-%Y'),
         #'pruebas': get_fecha_ultima_visita(),
     }
-    
+
+    def crear_nota_desde_cliente(self, cr, uid, ids, context=None):
+        """
+        @param self: The object pointer
+        @param cr: the current row, from the database cursor,
+        @param uid: the current user’s ID for security checks,
+        @param context: A standard dictionary for contextual values
+        """
+        value = {}
+        data = context and context.get('active_ids', []) or []
+        nota_obj = self.pool.get('maquipal.nota')
+        cliente_obj = self.pool.get('res.partner')
+
+        data_obj = self.pool.get('ir.model.data')
+        
+        #select the view
+        id2 = data_obj._get_id(cr, uid, 'maquipal', 'view_nota_form')
+        id3 = data_obj._get_id(cr, uid, 'maquipal', 'view_nota_tree')    
+        if id2:
+            id2 = data_obj.browse(cr, uid, id2, context=context).res_id
+        if id3:
+            id3 = data_obj.browse(cr, uid, id3, context=context).res_id 
+
+        #pdb.set_trace()
+
+        for this in self.browse(cr, uid, ids, context=context):
+            new_nota = nota_obj.create(cr, uid, {
+                    #con onchange_partner_id de maquipal.nota solo hace falta pasarle el id
+                    'cliente_id': this.id,
+            }, context=context)
+            value = {
+                'name': 'Nueva Nota',
+                'view_type': 'form',
+                'view_mode': 'tree,form',
+                'res_model': 'maquipal.nota',
+                'res_id' : new_nota,
+                'views': [(id2, 'form'), (id3, 'tree'), (False, 'calendar')],
+                'target': 'current',
+                'type': 'ir.actions.act_window',
+            }
+        return value
+
+
 res_partner()
 
 

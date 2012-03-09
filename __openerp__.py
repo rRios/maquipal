@@ -9,7 +9,6 @@
         'base',
         'base_action_rule',
         'process',
-        'mail_gateway',
         'base_calendar',
         'resource',
         'product',

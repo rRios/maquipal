@@ -6,97 +6,120 @@
 			<field name="name">product.normal.form.inherit</field>
 			<field name="model">product.product</field>
 			<field name="inherit_id" ref="product.product_normal_form_view"/>
+			<field eval="7" name="priority"/>
 			<field name="arch" type="xml">
-				<separator string="Characteristics" position="replace" />
-				<field name="sale_ok" position="replace" />
-				<field name="purchase_ok" position="replace" />
+                <page string="Information" position="replace"/>
+                <page string="Procurement &amp; Locations" position="replace"/>
+                <page string="Suppliers" position="replace"/>
+                <page string="Descriptions" position="replace"/>
+                <page groups="base.group_extended" string="Packaging" position="replace"/>
+                <group colspan="4" col="8" position="replace"/>
+				<form string="Product">
+                   <group colspan="4" col="8">
+                    <group colspan="4" col="2">
+                        <separator string="Name" colspan="2"/>
+                        <field name="name"/>
+                        <field name="cliente_id"/>
+                        <!-- <field groups="product.group_product_variant" name="variants" /> -->
+                    </group>
+                    <group colspan="2" col="2">
+                        <separator string="Codes" colspan="2"/>
+                        <field name="modelo"/>
+                        <field name="serie"/>
+                        <!-- <field name="default_code"/>
+                        <field name="ean13" groups="base.group_extended"/> -->
+                    </group>
+                    <group colspan="1" col="1">
+                        <field name="product_image" widget='image' nolabel="1"/>
+                    </group> 
+                    <button name="crear_nota_desde_maquina"
+                            string="Crear Nota"
+                            icon="gtk-go-forward"
+                            type="object" />
+                   </group>
 
-				<separator string="Codes" position="replace" />
-				<field name="default_code" position="replace" />
-				<field name="ean13" position="replace" />
-				
-				<page string="Information" position="replace" />
-				<page string="Procurement &amp; Locations" position="replace" />
-				<page string="Suppliers" position="replace" />
-				<page string="Descriptions" position="replace" />
-				<page string="Packaging" position="replace" />
+                    <notebook colspan="4" position="inside">
+                        <page string="Caracteristicas">
+                        	<group colspan="2" col="2">
+                        		<separator string="Motor" colspan="4" col="4"/>
+                        		<field name="mod_motor"/>
+                        		<field name="serie_motor"/>
+                        	</group>
+                        	<group colspan="2" col="2">
+                        		<separator string="Convertidor" colspan="4"/>
+                        		<field name="mod_convertidor"/>
+                        		<field name="serie_convertidor"/>
+                        	</group>
+                        	<separator string="Filtros" colspan="4"/>
+                        	<field name="f_combustible"/>
+                        	<field name="f_aceite"/>
+                        	<field name="f_aire_ext"/>
+                        	<field name="f_aire_int"/>
+                        	<field name="f_hidraulico"/>
+                        	<field name="f_convertidor"/>
+                        	<separator string="Otros" colspan="4"/>
+                        	<field name="t_dientes"/>
+                        	<field name="correa_alter"/>
+                        	<field name="correa_venti"/>
+                        	<field name="alternador"/>
+                        	<field name="m_arranque"/>
+                        	<field name="ruedas"/>
+                        	<field name="mastil"/>
+                        	<field name="bateria"/>
+                        </page>
+                        <page string="Comentarios">
+                        	<field name="comentarios"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
 
-				<separator string="Name" position="replace" />
-				<field name="name" position="replace" />
-
-				<group colspan="4" col="6">
-					<separator string="Maquina" colspan="6" />
-					<newline />
-					<field name="name" colspan="2" />
-					<field name="modelo" colspan="2" />
-					<field name="serie" colspan="2" />
-					<newline />
-					<field name="cliente_id" colspan="2" />
-					<button name="crear_nota_desde_maquina"
-						string="Crear Nota"
-						icon="gtk-go-forward"
-						type="object" />
-				</group>
-					
-				<notebook position="inside">
-					<page string="Caracteristicas">
-						<group colspan="2" col="2">
-							<separator string="Motor" colspan="4" col="4"/>
-							<field name="mod_motor"/>
-							<field name="serie_motor"/>
-						</group>
-						<group colspan="2" col="2">
-							<separator string="Convertidor" colspan="4"/>
-							<field name="mod_convertidor"/>
-							<field name="serie_convertidor"/>
-						</group>
-						<separator string="Filtros" colspan="4"/>
-						<field name="f_combustible"/>
-						<field name="f_aceite"/>
-						<field name="f_aire_ext"/>
-						<field name="f_aire_int"/>
-						<field name="f_hidraulico"/>
-						<field name="f_convertidor"/>
-						<separator string="Otros" colspan="4"/>
-						<field name="t_dientes"/>
-						<field name="correa_alter"/>
-						<field name="correa_venti"/>
-						<field name="alternador"/>
-						<field name="m_arranque"/>
-						<field name="ruedas"/>
-						<field name="mastil"/>
-						<field name="bateria"/>
-					</page>
-					<page string="Comentarios">
-						<field name="comentarios"/>
-					</page>
-				</notebook>
-			</field>
-		</record>
 		<!-- Maquina Tree View -->
 		<record id="product_product_tree_view" model="ir.ui.view">
-			<field name="name">product.product.tree.inherit</field>
-			<field name="model">product.product</field>
-			<field name="type">tree</field>
-			<field name="inherit_id" ref="product.product_product_tree_view"/>
-			<field name="arch" type="xml">
-				<field name="default_code" position="replace" />
-				<field name="variants" position="replace" />
-				<field name="uom_id" position="replace"/>
-				<field name="type" position="replace" />
-				<field name="qty_available" position="replace" />
-				<field name="virtual_available" position="replace"/>
-				<field name="lst_price" position="replace" />
-				<field name="price" position="replace" />
-				<field name="standard_price" position="replace" />
-				<field name="state" position="replace"/>
-				<tree string="Products" position="inside">
-					<field name="cliente_id" />
-					<field name="modelo" />
-					<field name="serie" />
-				</tree>
-			</field>
+		    <field name="name">product.product.tree</field>
+		    <field name="model">product.product</field>
+		    <field name="type">tree</field>
+		    <field eval="7" name="priority"/>
+		    <field name="arch" type="xml">
+		    	<!-- <field name="categ_id" invisible="1" position="replace"/>
+		    	<field name="variants" groups="product.group_product_variant" position="replace"/>
+		    	<field name="uom_id" string="UoM" position="replace"/>
+		    	<field name="type" position="replace"/>
+                <field name="virtual_available"/>
+		    	<field name="qty_available" position="replace"/>
+		    	<field name="lst_price" position="replace"/>
+		    	<field name="price" invisible="not context.get('pricelist',False)" position="replace"/>
+		    	<field name="standard_price" groups="base.group_extended" position="replace"/>
+                <field name="state" groups="base.group_extended"/>
+		    	<field name="company_id" groups="base.group_multi_company" invisible="1" position="replace"/> -->
+
+		    	<tree  string="Products" position="replace">
+                    <tree string="Products">
+                        <field name="name"/>
+                        <field name="cliente_id"/>
+    		    		<field name="modelo"/>
+                        <field name="serie"/>
+                    </tree>
+		        </tree>
+		        <!-- <tree colors="red:virtual_available&lt;0;blue:virtual_available&gt;=0 and state in ('draft', 'end', 'obsolete');black:virtual_available&gt;=0 and state not in ('draft', 'end', 'obsolete')" string="Products">
+		            <field name="default_code"/>
+		            <field name="name"/>
+		            <field name="categ_id" invisible="1"/>
+		            <field name="variants" groups="product.group_product_variant"/>
+		            <field name="uom_id" string="UoM"/>
+		            <field name="type"/>
+		            <field name="qty_available"/>
+		            <field name="virtual_available"/>
+		            <field name="lst_price"/>
+		            <field name="price" invisible="not context.get('pricelist',False)"/>
+		            <field name="standard_price" groups="base.group_extended"/>
+		            <field name="state" groups="base.group_extended"/>
+		            <field name="company_id" groups="base.group_multi_company" invisible="1"/>
+		        </tree> -->
+		    </field>
 		</record>
+
 		<!-- Maquina Action -->
 		<record model="ir.actions.act_window" id="action_maquina_form">
 			<field name="name">product.product</field>
@@ -105,4 +128,3 @@
 		<menuitem name="Maquinas" parent="menu_maquipal" id="menu_maquipal_maquinas" action="action_maquina_form" />
 	</data>
 </openerp>
-
