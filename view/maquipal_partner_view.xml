@@ -17,7 +17,95 @@
 			<field name="model">res.partner</field>
 			<field name="inherit_id" ref="base.view_partner_form"/>
 			<field name="arch" type="xml">
-				<field name="ref" position="replace" />
+
+				<form string="Partners" col='1' position="replace">
+					<form string="Partners" col="1">
+						<group col="7" colspan="4">
+							<group col="7" colspan="4">
+								<field name="name"/>
+								<field name="actividad"/>
+								<field name="riesgo"/>
+								<button name="crear_nota_desde_cliente"
+									string="Crear Nota"
+									icon="gtk-go-forward"
+									type="object" />
+							</group>
+						</group>
+						<notebook colspan="4">
+                        <page string="General">
+                            <field colspan="4" mode="form,tree" name="address" nolabel="1" select="1" height="260">
+                                <form string="Partner Contacts">
+                                    <group colspan="4" col="6">
+                                        <field name="name" string="Contact Name"/>
+                                        <field name="function"/>
+                                    </group>
+                                    <newline/>
+                                      <group colspan="2" col="4">
+                                        <separator string="Postal Address" colspan="4" col="4" />
+                                        <field name="street" colspan="4"/>
+                                        <field name="zip"/>
+                                        <field name="city"/>
+                                     </group>
+                                     <group colspan="2" col="2">
+                                        <separator string="Communication" colspan="2" col="2" />
+                                        <field name="phone"/>
+                                        <field name="mobile"/>
+                                        <field name="fax"/>
+                                        <field name="email" widget="email"/>
+                                     </group>
+                                </form>
+                                <tree string="Partner Contacts">
+                                    <field name="name"/>
+                                    <field name="zip"/>
+                                    <field name="city"/>
+                                    <field name="phone"/>
+                                    <field name="email"/>
+                                </tree>
+                            </field>
+                            <group  groups="base.group_extended">
+                                    <separator colspan="4" string="Categories"/>
+                                    <field  colspan="4" name="category_id" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Sales &amp; Purchases" invisible="1">
+                            <separator string="General Information" colspan="4"/>
+                            <field name="user_id"/>
+                            <field name="active" groups="base.group_extended"/>
+                            <field name="website" widget="url"/>
+                            <field name="date"/>
+                            <field name="parent_id" groups="base.group_extended"/>
+                            <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                            <newline/>
+                        </page>
+                        <page string="History" groups="base.group_extended" invisible="True">
+                        </page>
+                        <page string="Notes">
+                            <field colspan="4" name="comment" nolabel="1"/>
+                        </page>
+                        <page string="Visitas">
+							<field name="ultima_visita" string="Ultima Visita"/>
+							<field name="pruebas" string="Pruebas"/>
+							<field name="comentarios" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
+								<tree string="Comentarios de visitas">
+									<field name="fecha_creacion" string="Fecha"/>
+									<field name="texto" string="Nota"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Maquinas">
+							<field name="maquinas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
+								<tree string="Maquinas">
+									<field name="name" string="Nombre"/>
+									<field name="modelo" string="Modelo"/>
+									<field name="serie" string="Serie"/>
+								</tree>
+							</field>
+						</page>
+                    </notebook>
+                </form>
+
+
+				<!-- <field name="ref" position="replace" />
 				<field name="lang" position="replace" />
 				<field name="title" position="replace" />
 				<field name="customer" position="replace" />
@@ -45,11 +133,11 @@
 				<field name="website" position="replace" />
 				<field name="date" position="replace" />
 				<field name="parent_id" position="replace" />
-				<field name="company_id" position="replace" />
+				<field name="company_id" position="replace" /> -->
 
 				<!-- <page string="Sales &amp; Purchases" invisible="True" /> -->
 				<!-- <page string="History" position="replace" /> -->
-				<notebook position="inside">				
+				<!-- <notebook position="inside">				
 					<page string="Visitas">
 						<field name="ultima_visita" string="Ultima Visita"/>
 						<field name="pruebas" string="Pruebas"/>
@@ -65,16 +153,17 @@
 							<tree string="Maquinas">
 								<field name="name" string="Nombre"/>
 								<field name="modelo" string="Modelo"/>
-								<field name="serie" string="Serie"/>
+								<field name="serie" string="Serie"/> -->
 								<!-- <button name="crear_nota"
 									string="Crear Nota"
 									help="Crear Nota"
 									icon="gtk-go-forward"
-									type="object"/> -->
+									type="object"/> 
 							</tree>
 						</field>
 					</page>
-				</notebook>
+				</notebook> -->
+				</form>
 			</field>
 		</record>
 		<!-- Partner Tree View -->
