@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
-		<!-- <record id="view_partner_property_form" model="ir.ui.view">
-			<field name="name">res.partner.product.property.form.inherit</field>
-			<field name="model">res.partner</field>
-			<field name="type">form</field>
-			<field name="inherit_id" ref="base.view_partner_form"/>
-			<field name="arch" type="xml">
-				<page string="Sales &amp; Purchases" position="replace" />
-			</field>
-		</record> -->
 
 		<!-- Partner Form View -->
 		<record id="view_partner_form" model="ir.ui.view">
@@ -82,7 +73,7 @@
                         <page string="Notes">
                             <field colspan="4" name="comment" nolabel="1"/>
                         </page>
-                        <page string="Visitas">
+                        <!-- <page string="Visitas">
 							<field name="ultima_visita" string="Ultima Visita"/>
 							<field name="pruebas" string="Pruebas"/>
 							<field name="comentarios" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
@@ -91,7 +82,7 @@
 									<field name="texto" string="Nota"/>
 								</tree>
 							</field>
-						</page>
+						</page> -->
 						<page string="Maquinas">
 							<field name="maquinas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
 								<tree string="Maquinas">
@@ -101,68 +92,19 @@
 								</tree>
 							</field>
 						</page>
+						<page string="Calendario de Visitas">
+							<field name="visitas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
+								<tree string="Visitas" colors="red:date&lt;current_date;">
+									<field name="partner_id" string="Cliente" />
+									<field name="name" string="Asunto"/>
+									<field name="tipo" string="Tipo"/>
+									<field name="date" string="Fecha"/>
+								</tree>
+							</field>
+						</page>
                     </notebook>
                 </form>
 
-
-				<!-- <field name="ref" position="replace" />
-				<field name="lang" position="replace" />
-				<field name="title" position="replace" />
-				<field name="customer" position="replace" />
-				<field name="supplier" position="replace" />
-
-				<field name="type" position="replace" />
-				<field name="country_id" position="replace" />
-				<field name="state_id" position="replace" />
-
-				<separator string="Categories" position="replace" />
-				<field name="category_id" position="replace" />
-				
-				<field name="name" position="after">	
-					<field name="actividad"/>
-					<field name="riesgo"/>
-					<button name="crear_nota_desde_cliente"
-						string="Crear Nota"
-						icon="gtk-go-forward"
-						type="object" />
-				</field>
-				
-				<separator string="General Information" position="replace" />
-				<field name="user_id" position="replace" />
-				<field name="active" position="replace" />
-				<field name="website" position="replace" />
-				<field name="date" position="replace" />
-				<field name="parent_id" position="replace" />
-				<field name="company_id" position="replace" /> -->
-
-				<!-- <page string="Sales &amp; Purchases" invisible="True" /> -->
-				<!-- <page string="History" position="replace" /> -->
-				<!-- <notebook position="inside">				
-					<page string="Visitas">
-						<field name="ultima_visita" string="Ultima Visita"/>
-						<field name="pruebas" string="Pruebas"/>
-						<field name="comentarios" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
-							<tree string="Comentarios de visitas">
-								<field name="fecha_creacion" string="Fecha"/>
-								<field name="texto" string="Nota"/>
-							</tree>
-						</field>
-					</page>
-					<page string="Maquinas">
-						<field name="maquinas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
-							<tree string="Maquinas">
-								<field name="name" string="Nombre"/>
-								<field name="modelo" string="Modelo"/>
-								<field name="serie" string="Serie"/> -->
-								<!-- <button name="crear_nota"
-									string="Crear Nota"
-									help="Crear Nota"
-									icon="gtk-go-forward"
-									type="object"/> 
-							</tree>
-						</field>
-					</page>
-				</notebook> -->
 				</form>
 			</field>
 		</record>
@@ -174,9 +116,11 @@
 			<field name="inherit_id" ref="base.view_partner_tree"/>
 			<field name="arch" type="xml">
 				<field name="ref" position="replace"/>
-				<field name="country" position="replace"/>
+				<field name="country" invisible="1"/>
 			</field>
 		</record>
+
+
 		<!-- Cliente Action -->
 		<record model="ir.actions.act_window" id="action_cliente_form">
 			<field name="name">res.partner</field>
@@ -184,6 +128,28 @@
 		</record>
 		<menuitem name="Maquipal" icon="terp-project" id="menu_maquipal" />
 		<menuitem name="Clientes" parent="menu_maquipal" id="menu_maquipal_lista" action="action_cliente_form" />
+
+		<record model="ir.actions.act_window" id="action_calendario">
+			<field name="name">crm.meeting</field>
+			<field name="res_model">crm.meeting</field>
+			<field name="view_mode">calendar,tree,form,gantt</field>
+		</record>
+		<menuitem name="Calendario" parent="menu_maquipal" id="menu_maquipal_calendario" action="action_calendario" />
+
+
+		<!-- crm.meeting -->
+		<record model="ir.ui.view" id="crm_case_form_view_meet">
+        	<field name="name">CRM - Meetings Form</field>
+	        <field name="model">crm.meeting</field>
+	        <field name="type">form</field>
+	        <field name="inherit_id" ref="crm.crm_case_form_view_meet"/>
+	        <field name="arch" type="xml">
+	        	<field name="user_id" position="after">
+	        		<field name="tipo" string="Tipo"/>
+	        	</field>
+	        </field>
+	    </record>
+
 	</data>
 </openerp>
 

@@ -30,7 +30,7 @@
         cliente_id: maquipal_cliente3
 
 -   |
-    Creamos una nota con valores ficticios (sacados de tests anteriores -CAMBIAR-)
+    Creamos una nota con valores ficticios (sacados de tests anteriores)
 -
     !record {model: maquipal.nota, id: maquipal_nota1}:
         cliente_id: maquipal_cliente3

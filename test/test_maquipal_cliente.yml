@@ -21,60 +21,60 @@
         #Falta History con los mails
         comment: "Comentarios Cliente 1"
 
--   |
-    Creamos un comentario de visita para maquipal_cliente1
--
-    !record {model: maquipal.comentarios.visita, id: comentario_visita_1}:
-        fecha_creacion: !eval time.strftime('%Y-%m-%d 16:04:00')
-        texto: "Comentarios de la visita"
-        partner_id: maquipal_cliente1
+# -   |
+#     Creamos un comentario de visita para maquipal_cliente1
+# -
+#     !record {model: maquipal.comentarios.visita, id: comentario_visita_1}:
+#         fecha_creacion: !eval time.strftime('%Y-%m-%d 16:04:00')
+#         texto: "Comentarios de la visita"
+#         partner_id: maquipal_cliente1
 
--   |
-    Creamos un segundo comentario
--
-    !record {model: maquipal.comentarios.visita, id: comentario_visita_2}:
-        fecha_creacion: !eval time.strftime('2012-03-01 18:04:00')
-        texto: "Otro comentario"
-        partner_id: maquipal_cliente1
+# -   |
+#     Creamos un segundo comentario
+# -
+#     !record {model: maquipal.comentarios.visita, id: comentario_visita_2}:
+#         fecha_creacion: !eval time.strftime('2012-03-01 18:04:00')
+#         texto: "Otro comentario"
+#         partner_id: maquipal_cliente1
 
--   |
-    Comprobamos que 'ultima_visita' coincida con la fecha de creacion de comentario_visita_2
--
-    !python {model: res.partner}: |
-        cliente = self.browse(cr, uid, ref('maquipal_cliente1'))
-        #es nuestro cliente
-        assert cliente.name=="Cliente 1"
+# -   |
+#     Comprobamos que 'ultima_visita' coincida con la fecha de creacion de comentario_visita_2
+# -
+#     !python {model: res.partner}: |
+#         cliente = self.browse(cr, uid, ref('maquipal_cliente1'))
+#         #es nuestro cliente
+#         assert cliente.name=="Cliente 1"
 
-        #tiene 2 comentarios de visita
-        assert len(cliente.comentarios)==2
+#         #tiene 2 comentarios de visita
+#         assert len(cliente.comentarios)==2
 
-        #ultima_visita muestra la fecha correcta
-        import time
-        #no es la fecha del primer comentario
-        assert cliente.ultima_visita != time.strftime("%d/%m/%Y",time.strptime(cliente.comentarios[0].fecha_creacion,"%Y-%m-%d"))
-        #es la fecha del segundo
-        assert cliente.ultima_visita == time.strftime("%d/%m/%Y",time.strptime(cliente.comentarios[1].fecha_creacion,"%Y-%m-%d"))
+#         #ultima_visita muestra la fecha correcta
+#         import time
+#         #no es la fecha del primer comentario
+#         assert cliente.ultima_visita != time.strftime("%d/%m/%Y",time.strptime(cliente.comentarios[0].fecha_creacion,"%Y-%m-%d"))
+#         #es la fecha del segundo
+#         assert cliente.ultima_visita == time.strftime("%d/%m/%Y",time.strptime(cliente.comentarios[1].fecha_creacion,"%Y-%m-%d"))
 
--   |
-    Borramos la ultima visita
--
-    !delete {model: maquipal.comentarios.visita, search: "[('texto', '=', 'Otro comentario')]"}
+# -   |
+#     Borramos la ultima visita
+# -
+#     !delete {model: maquipal.comentarios.visita, search: "[('texto', '=', 'Otro comentario')]"}
 
--   |
-    ultima_visita es ahora la fecha del primer comentario
--
-    !python {model: res.partner}: |
-        cliente = self.browse(cr, uid, ref('maquipal_cliente1'))
-        #es nuestro cliente
-        assert cliente.name=="Cliente 1"
+# -   |
+#     ultima_visita es ahora la fecha del primer comentario
+# -
+#     !python {model: res.partner}: |
+#         cliente = self.browse(cr, uid, ref('maquipal_cliente1'))
+#         #es nuestro cliente
+#         assert cliente.name=="Cliente 1"
 
-        #tiene 1 comentarios de visita
-        assert len(cliente.comentarios)==1
+#         #tiene 1 comentarios de visita
+#         assert len(cliente.comentarios)==1
 
-        #ultima_visita muestra la fecha correcta
-        import time
-        #es la fecha del primer comentario
-        assert cliente.ultima_visita == time.strftime("%d/%m/%Y",time.strptime(cliente.comentarios[0].fecha_creacion,"%Y-%m-%d"))
+#         #ultima_visita muestra la fecha correcta
+#         import time
+#         #es la fecha del primer comentario
+#         assert cliente.ultima_visita == time.strftime("%d/%m/%Y",time.strptime(cliente.comentarios[0].fecha_creacion,"%Y-%m-%d"))
 
 -   |
     Creamos una nueva maquina asociada a maquipal_cliente1

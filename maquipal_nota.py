@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from osv import fields, osv
+import pdb
 
 class maquipal_nota(osv.osv):
     def onchange_partner_id(self, cr, uid, ids, part, email=False):
@@ -18,8 +19,10 @@ class maquipal_nota(osv.osv):
                             'phone': False
                             }}
         addr = self.pool.get('res.partner').address_get(cr, uid, [part], ['contact'])
-        data = {'partner_address_id': addr['contact']}
-        data.update(self.onchange_partner_address_id(cr, uid, ids, addr['contact'])['value'])
+        #data = {'partner_address_id': addr['contact']}
+        #data.update(self.onchange_partner_address_id(cr, uid, ids, addr['contact'])['value'])
+        data = self.onchange_partner_address_id(cr, uid, ids, addr['contact'])['value']
+        #data.update(self.onchange_partner_address_id(cr, uid, ids, addr['contact'])['value'])
         return {'value': data}
 
     def onchange_partner_address_id(self, cr, uid, ids, add, email=False):
@@ -34,7 +37,9 @@ class maquipal_nota(osv.osv):
         if not add:
             return {'value': {'email_from': False}}
         address = self.pool.get('res.partner.address').browse(cr, uid, add)
-        return {'value': {'email_from': address.email, 'phone': address.phone, 'contacto': address.name}}
+        #pdb.set_trace()
+        #return {'value': {'email_from': address.email, 'phone': address.phone, 'contacto': address.name}}
+        return {'value': {'phone': address.phone, 'contacto': address.name}}
 
     def onchange_maquina_id(self, cr, uid, ids, maq):
         """This function returns value of modelo and serie based on maquina id

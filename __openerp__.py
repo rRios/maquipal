@@ -12,6 +12,7 @@
         'base_calendar',
         'resource',
         'product',
+        'crm',
     ],
     'init_xml': [],
     'update_xml': [
@@ -26,6 +27,6 @@
             'test/test_maquipal_nota.yml',
             ],
     'installable': True,
-    'active': False,
+    'auto_install': False,
 }
 
