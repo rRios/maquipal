@@ -32,10 +32,11 @@ class res_partner(osv.osv):
     _columns = {
         'actividad': fields.char('Actividad', size=64),
         'riesgo': fields.char('Riesgo', size=64),
+        'address': fields.one2many('res.partner.address', 'partner_id', 'Contacts'),
+        'calle': fields.related('address', 'street', type='char', string='Calle'),
+        'elcontacto': fields.related('address', 'name', type='char', string='Contacto'),
         #'comentarios': fields.one2many('maquipal.comentarios.visita','partner_id','Comentarios'),
         'maquinas': fields.one2many('product.product', 'cliente_id', 'Maquinas'),
-        #'ultima_visita': fields.function(get_fecha_ultima_visita, type='char', size=64, method=True),
-        #'pruebas': fields.function(get_fecha_ultima_visita, type='char', size=64,  method=True),
         'visitas': fields.one2many('crm.meeting', 'partner_id', 'Visitas'),
     } 
     _defaults = {

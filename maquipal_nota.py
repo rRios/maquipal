@@ -58,17 +58,17 @@ class maquipal_nota(osv.osv):
     _name = 'maquipal.nota'
     _description = 'Nota'
     _columns = {
-        'cliente_id': fields.many2one('res.partner', 'Cliente'),
+        'cliente_id': fields.many2one('res.partner', 'Cliente', select=True),
         'phone': fields.char('Telefono', size=64),
         'contacto': fields.char('Contacto', size=64),
-        'maquina': fields.many2one('product.product', 'Maquina'),
-        'modelo': fields.char('Modelo', size=64),
+        'maquina': fields.many2one('product.product', 'Maquina', select=True),
+        'modelo': fields.char('Modelo', size=64, select=True),
         'serie': fields.char('Serie', size=64),
-        'fecha_inicio': fields.date('Fecha inicio', readonly=True),
+        'fecha_inicio': fields.date('Fecha inicio', readonly=True, select=True),
         'fecha_final': fields.date('Fecha final', readonly=True),
-        'tema': fields.char('Tema', size=64),
+        'tema': fields.char('Tema', size=64, select=True),
         'datos': fields.text('Datos'),
-        'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo'),
+        'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo', select=True),
     }
     _defaults = {
         'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),

@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
+        <!-- Maquina search -->
+        <record id="product_search_form_view" model="ir.ui.view">
+            <field name="name">product.search.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <search string="Product" position="replace">
+                    <search string="Product">
+                        <field name="name"/>
+                        <field name="modelo"/>
+                        <field name="serie"/>
+                        <field name="cliente_id"/>
+                    </search>
+                </search>
+            </field>
+        </record>
+
 		<!-- Maquina Form View -->
 		<record id="product_normal_form_view" model="ir.ui.view">
 			<field name="name">product.normal.form.inherit</field>

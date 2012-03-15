@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
+		<!-- Search Views -->
+		<record id="view_res_partner_filter" model="ir.ui.view">
+            <field name="name">res.partner.select.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <search string="Search Partner" position="replace">
+                	<search string="Search Partner">
+                		<field name="name"/>
+                		<field name="city"/>
+                		<field name="category_id" invisible="1"/>
+                	</search>
+                </search>
+            </field>
+		</record>
 
 		<!-- Partner Form View -->
 		<record id="view_partner_form" model="ir.ui.view">
@@ -108,6 +124,7 @@
 				</form>
 			</field>
 		</record>
+
 		<!-- Partner Tree View -->
 		<record id="view_partner_tree" model="ir.ui.view">
 			<field name="name">res.partner.tree.inherit</field>
@@ -115,8 +132,16 @@
 			<field name="type">tree</field>
 			<field name="inherit_id" ref="base.view_partner_tree"/>
 			<field name="arch" type="xml">
-				<field name="ref" position="replace"/>
-				<field name="country" invisible="1"/>
+                <tree string="Partners" position="replace">
+                	<tree string="Partners">
+                		<field name="name"/>
+                		<field name="calle"/>
+                		<field name="city"/>
+                		<field name="phone"/>
+                		<field name="elcontacto"/>
+                		<field name="country" invisible="1"/>
+                	</tree>
+                </tree>
 			</field>
 		</record>
 

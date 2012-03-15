@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
+		<!-- Search View -->
+		<record id="nota_search_view" model="ir.ui.view">
+			<field name="name">maquipal.nota.search.form</field>
+            <field name="model">maquipal.nota</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Notas">
+                	<field name="tema"/>
+                    <field name="cliente_id"/>
+                    <field name="maquina"/>
+                    <field name="modelo"/>
+                    <field name="fecha_inicio"/>
+                    <field name="tipo"/>
+                </search>
+            </field>
+        </record>
+
 		<!-- Nota Form View -->
 		<record id="view_nota_form" model="ir.ui.view">
 			<field name="name">maquipal.nota.form</field>
