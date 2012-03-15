@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from osv import fields, osv
+import time
 import pdb
 
 class maquipal_nota(osv.osv):
@@ -63,10 +64,14 @@ class maquipal_nota(osv.osv):
         'maquina': fields.many2one('product.product', 'Maquina'),
         'modelo': fields.char('Modelo', size=64),
         'serie': fields.char('Serie', size=64),
+        'fecha_inicio': fields.date('Fecha inicio', readonly=True),
+        'fecha_final': fields.date('Fecha final', readonly=True),
         'tema': fields.char('Tema', size=64),
+        'datos': fields.text('Datos'),
+        'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo'),
     }
     _defaults = {
-        #'telefono': _get_default_telefono,
+        'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),
     }
 
 maquipal_nota()

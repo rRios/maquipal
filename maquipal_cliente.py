@@ -112,7 +112,7 @@ class maquipal_calendario(osv.osv):
         #'ultima_visita': fields.function(get_fecha_ultima_visita, type='char', size=64, method=True),
         #'proxima_visita': fields.function(get_fecha_ultima_visita, type='char', size=64, method=True),
         'visitas': fields.one2many('crm.meeting', 'partner_id', 'Visitas'),
-        'tipo': fields.selection([('visita', 'Visita'), ('llamada', 'Llamada')], 'Tiporrr'),
+        'tipo': fields.selection([('visita', 'Visita'), ('llamada', 'Llamada')], 'Tipo'),
         }
     _order = "date desc"
 

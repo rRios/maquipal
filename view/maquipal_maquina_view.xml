@@ -74,18 +74,19 @@
 
 		<!-- Maquina Tree View -->
 		<record id="product_product_tree_view" model="ir.ui.view">
-		    <field name="name">product.product.tree</field>
+		    <field name="name">product.product.tree.inherit</field>
 		    <field name="model">product.product</field>
 		    <field name="type">tree</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
 		    <field eval="7" name="priority"/>
 		    <field name="arch" type="xml">
-
+                <!-- <field name="default_code" invisible="1"/> -->
 		    	<tree  string="Products" position="replace">
                     <tree string="Products">
                         <field name="name"/>
-                        <field name="cliente_id"/>
-    		    		<field name="modelo"/>
+                        <field name="modelo"/>
                         <field name="serie"/>
+                        <field name="cliente_id"/>
                     </tree>
 		        </tree>
 		    </field>

@@ -8,6 +8,19 @@
 			<field name="type">form</field>
 			<field name="arch" type="xml">
 				<form string="Notas">
+					<group colspan="6" col="6">
+						<group colspan="2" col="2"> 
+							<field name="tema"/>
+							<field name="tipo"/>
+						</group>
+						<group colspan="2" col="2">
+							<field name="fecha_inicio"/>
+							<field name="fecha_final"/>
+						</group>
+						<group colspan="1">
+							
+						</group>
+					</group>
 					<group colspan="4" col="4">
 						<group colspan="2" col="2">
 							<separator string="Cliente" colspan="2" />
@@ -22,7 +35,10 @@
 							<field name="serie" string="Serie" />
 						</group>
 					</group>
-					<field name="tema" />
+					<!-- <field name="tema" /> -->
+					<!-- <field name="fecha_inicio" /> -->
+					<field name="datos"/>
+					<!-- <field name="tipo"/> -->
 				</form>
 			</field>
 		</record>
@@ -34,9 +50,12 @@
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
 				<tree string="Notas" position="inside">
+					<field name="fecha_inicio"/>
+					<field name="tema"/>
 					<field name="cliente_id" />
 					<field name="phone" />
 					<field name="maquina" />
+					<field name="tipo"/>
 				</tree>
 			</field>
 		</record>
