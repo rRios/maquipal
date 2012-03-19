@@ -68,10 +68,11 @@ class res_partner(osv.osv):
         #pdb.set_trace()
 
         for this in self.browse(cr, uid, ids, context=context):
+            #pdb.set_trace()
             new_nota = nota_obj.create(cr, uid, {
                     'cliente_id': this.id,
                     'phone': this.phone,
-                    'contacto': this.name,
+                    'contacto': this.address[0].name,
             }, context=context)
             value = {
                 'name': 'Nueva Nota',

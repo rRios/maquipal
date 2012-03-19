@@ -97,3 +97,18 @@
         assert len(cliente.maquinas)==1
         #de nombre Nueva Maquina
         assert cliente.maquinas[0].name=="Nueva Maquina"
+
+-   |
+    Desde cliente creamos una nueva nota y comprobamos que tiene los campos de maquipal_cliente1
+-
+    !python {model: res.partner}: |
+        #creamos la nota
+        nota = self.crear_nota_desde_cliente(cr, uid, [ref("maquipal_cliente1")], context=context)
+        #obtenemos todas las notas
+        lasnotas = self.pool.get('maquipal.nota')
+        #seleccionamos la nota que acabamos de crear
+        lanota = lasnotas.browse(cr, uid, nota['res_id'])
+        #comprobamos
+        assert lanota.cliente_id.name == "Cliente 1"
+        assert lanota.phone == "+34 555666999"
+        assert lanota.contacto == "Contacto Cliente 1"

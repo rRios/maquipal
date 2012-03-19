@@ -20,10 +20,11 @@ class maquipal_nota(osv.osv):
                             'phone': False
                             }}
         addr = self.pool.get('res.partner').address_get(cr, uid, [part], ['contact'])
-        #data = {'partner_address_id': addr['contact']}
-        #data.update(self.onchange_partner_address_id(cr, uid, ids, addr['contact'])['value'])
+        #addr = self.pool.get('res.partner').address_get(cr, uid, [part])
+
         data = self.onchange_partner_address_id(cr, uid, ids, addr['contact'])['value']
-        #data.update(self.onchange_partner_address_id(cr, uid, ids, addr['contact'])['value'])
+        #data = self.onchange_partner_address_id(cr, uid, ids, addr)['value']
+
         return {'value': data}
 
     def onchange_partner_address_id(self, cr, uid, ids, add, email=False):
@@ -63,7 +64,7 @@ class maquipal_nota(osv.osv):
         'contacto': fields.char('Contacto', size=64),
         'maquina': fields.many2one('product.product', 'Maquina', select=True),
         'modelo': fields.char('Modelo', size=64, select=True),
-        'serie': fields.char('Serie', size=64),
+        'serie': fields.char('Serie', size=64, select=True),
         'fecha_inicio': fields.date('Fecha inicio', readonly=True, select=True),
         'fecha_final': fields.date('Fecha final', readonly=True),
         'tema': fields.char('Tema', size=64, select=True),

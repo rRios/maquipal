@@ -6,7 +6,7 @@
         actividad: "Actividad Cliente 2"
         riesgo: "Riesgo Cliente 2"
         address: 
-            - name: "Contacto Cliente 2"
+            - name: "John Smith"
               title: base.res_partner_title_sir
               function: "Administrador" 
               street: "calle 1"
@@ -28,3 +28,23 @@
         modelo: "Nuevo Modelo"
         serie: "Nueva Serie"
         cliente_id: maquipal_cliente2
+
+-   |
+    Desde maquina creamos una nueva nota y comprobamos que tiene los campos de maquipal_cliente2 y maquipal_maquina1
+-
+    !python {model: product.product}: |
+        #creamos la nota
+        nota = self.crear_nota_desde_maquina(cr, uid, [ref("maquipal_maquina1")], context=context)
+        #obtenemos todas las notas
+        lasnotas = self.pool.get('maquipal.nota')
+        #seleccionamos la nota que acabamos de crear
+        lanota = lasnotas.browse(cr, uid, nota['res_id'])
+        #comprobamos
+        assert lanota.cliente_id.name == "Cliente 2"
+        assert lanota.phone == "+34 66666666"
+        assert lanota.contacto == "John Smith"
+        assert lanota.maquina.name == "Nueva Maquina"
+        assert lanota.modelo == "Nuevo Modelo"
+        assert lanota.serie == "Nueva Serie"
+
+

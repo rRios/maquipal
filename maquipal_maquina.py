@@ -57,10 +57,12 @@ class product_product(osv.osv):
         #pdb.set_trace()
 
         for this in self.browse(cr, uid, ids, context=context):
+            #pdb.set_trace()
             new_nota = nota_obj.create(cr, uid, {
                     'cliente_id': this.cliente_id.id,
                     'phone': this.cliente_id.phone,
-                    'contacto': this.cliente_id.name,
+                    #'contacto': this.cliente_id.name,
+                    'contacto': this.cliente_id.address[0].name,
                     'maquina': this.id,
                     'modelo': this.modelo,
                     'serie': this.serie,
@@ -75,6 +77,7 @@ class product_product(osv.osv):
                 'target': 'current',
                 'type': 'ir.actions.act_window',
             }
+        #pdb.set_trace()
         return value
 
     # def default_get(self, cr, uid, fields, context=None):
