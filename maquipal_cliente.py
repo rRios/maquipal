@@ -69,11 +69,22 @@ class res_partner(osv.osv):
 
         for this in self.browse(cr, uid, ids, context=context):
             #pdb.set_trace()
+            if this.riesgo == False:
+                campo_riesgo = ''
+            else:
+                campo_riesgo = this.riesgo
+            if this.comment == False:
+                campo_comment = ''
+            else:
+                campo_comment = this.comment
+
+            campo_avisos = 'Riesgo: '+campo_riesgo+'\n\n'+campo_comment
+
             new_nota = nota_obj.create(cr, uid, {
                     'cliente_id': this.id,
                     'phone': this.phone,
                     'contacto': this.address[0].name,
-                    'avisos': this.comment,
+                    'avisos': campo_avisos,
             }, context=context)
             value = {
                 'name': 'Nueva Nota',

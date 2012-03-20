@@ -58,11 +58,22 @@ class product_product(osv.osv):
 
         for this in self.browse(cr, uid, ids, context=context):
             #pdb.set_trace()
+            if this.cliente_id.riesgo == False:
+                campo_riesgo = ''
+            else:
+                campo_riesgo = this.cliente_id.riesgo
+            if this.cliente_id.comment == False:
+                campo_comment = ''
+            else:
+                campo_comment = this.cliente_id.comment
+
+            campo_avisos = 'Riesgo: '+campo_riesgo+'\n\n'+campo_comment
+            
             new_nota = nota_obj.create(cr, uid, {
                     'cliente_id': this.cliente_id.id,
                     'phone': this.cliente_id.phone,
                     'contacto': this.cliente_id.address[0].name,
-                    'avisos': this.cliente_id.comment,
+                    'avisos': campo_avisos,
                     'maquina': this.id,
                     'modelo': this.modelo,
                     'serie': this.serie,
