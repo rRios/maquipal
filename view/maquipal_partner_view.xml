@@ -86,7 +86,7 @@
                         </page>
                         <page string="History" groups="base.group_extended" invisible="True">
                         </page>
-                        <page string="Notes">
+                        <page string="Avisos">
                             <field colspan="4" name="comment" nolabel="1"/>
                         </page>
                         <!-- <page string="Visitas">

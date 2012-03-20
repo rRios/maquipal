@@ -61,8 +61,8 @@ class product_product(osv.osv):
             new_nota = nota_obj.create(cr, uid, {
                     'cliente_id': this.cliente_id.id,
                     'phone': this.cliente_id.phone,
-                    #'contacto': this.cliente_id.name,
                     'contacto': this.cliente_id.address[0].name,
+                    'avisos': this.cliente_id.comment,
                     'maquina': this.id,
                     'modelo': this.modelo,
                     'serie': this.serie,

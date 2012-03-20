@@ -73,6 +73,7 @@ class res_partner(osv.osv):
                     'cliente_id': this.id,
                     'phone': this.phone,
                     'contacto': this.address[0].name,
+                    'avisos': this.comment,
             }, context=context)
             value = {
                 'name': 'Nueva Nota',

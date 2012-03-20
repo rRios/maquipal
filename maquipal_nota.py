@@ -70,6 +70,7 @@ class maquipal_nota(osv.osv):
         'tema': fields.char('Tema', size=64, select=True),
         'datos': fields.text('Datos'),
         'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo', select=True),
+        'avisos': fields.text('Avisos')
     }
     _defaults = {
         'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),

@@ -39,24 +39,31 @@
 							
 						</group>
 					</group>
-					<group colspan="4" col="4">
-						<group colspan="2" col="2">
-							<separator string="Cliente" colspan="2" />
-							<field name="cliente_id" string="Cliente" on_change="onchange_partner_id(cliente_id, phone)"/>
-							<field name="phone" string="Telefono" />
-							<field name="contacto" string="Contacto" />
-						</group>
-						<group colspan="2" col="2">
-							<separator string="Maquina" colspan="2" />
-							<field name="maquina" string="Maquina" on_change="onchange_maquina_id(maquina)" />
-							<field name="modelo" string="Modelo" />
-							<field name="serie" string="Serie" />
-						</group>
-					</group>
-					<!-- <field name="tema" /> -->
-					<!-- <field name="fecha_inicio" /> -->
-					<field name="datos"/>
-					<!-- <field name="tipo"/> -->
+					<notebook colspan="4">
+						<page string="General">
+							<group colspan="4" col="4">
+								<group colspan="2" col="2">
+									<separator string="Cliente" colspan="2" />
+									<field name="cliente_id" string="Cliente" on_change="onchange_partner_id(cliente_id, phone)"/>
+									<field name="phone" string="Telefono" />
+									<field name="contacto" string="Contacto" />
+								</group>
+								<group colspan="2" col="2">
+									<separator string="Maquina" colspan="2" />
+									<field name="maquina" string="Maquina" on_change="onchange_maquina_id(maquina)" />
+									<field name="modelo" string="Modelo" />
+									<field name="serie" string="Serie" />
+								</group>
+							</group>
+							<!-- <field name="tema" /> -->
+							<!-- <field name="fecha_inicio" /> -->
+							<field name="datos"/>
+							<!-- <field name="tipo"/> -->
+						</page>
+						<page string="Avisos">
+							<field name="avisos" nolabel="1" />
+						</page>
+				</notebook>
 				</form>
 			</field>
 		</record>

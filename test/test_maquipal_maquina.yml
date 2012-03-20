@@ -43,6 +43,7 @@
         assert lanota.cliente_id.name == "Cliente 2"
         assert lanota.phone == "+34 66666666"
         assert lanota.contacto == "John Smith"
+        assert lanota.avisos == "Comentarios Cliente 2"
         assert lanota.maquina.name == "Nueva Maquina"
         assert lanota.modelo == "Nuevo Modelo"
         assert lanota.serie == "Nueva Serie"
