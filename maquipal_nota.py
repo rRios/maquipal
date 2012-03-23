@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from osv import fields, osv
+from datetime import datetime
 import time
 import pdb
 
@@ -70,10 +71,61 @@ class maquipal_nota(osv.osv):
         'tema': fields.char('Tema', size=64, select=True),
         'datos': fields.text('Datos'),
         'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo', select=True),
-        'avisos': fields.text('Avisos')
+        'avisos': fields.text('Avisos'),
+        'state': fields.selection([
+                    ('borrador', 'Borrador'),
+                    ('gestion', 'Gestion'),
+                    ('comercial', 'Comercial'),
+                    ('almacen', 'Almacen'),
+                    ('final', 'Final')], 'Estado', readonly=True, select=True),
     }
     _defaults = {
-        'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),
+        #'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),
+        'fecha_inicio': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+        'state': 'borrador',
     }
+
+    def action_borrador(self, cr, uid, ids, context=None):
+        """Pasa a borrador
+        """
+        self.write(cr, uid, ids, {'state': 'borrador'})
+        return True
+
+    def action_gestion(self, cr, uid, ids, context=None):
+        """Pasa a gestion
+        """
+        self.write(cr, uid, ids, {'state': 'gestion'})
+        return True
+
+    def action_comercial(self, cr, uid, ids, context=None):
+        """Pasa a comercial
+        """
+        self.write(cr, uid, ids, {'state': 'comercial'})
+        return True
+
+    def action_almacen(self, cr, uid, ids, context=None):
+        """Pasa a almacen
+        """
+        self.write(cr, uid, ids, {'state': 'almacen'})
+        return True
+
+    def action_final(self, cr, uid, ids, context=None):
+        """Pasa a final
+        """
+        self.write(cr, uid, ids, {'state': 'final'})
+        return True
+
+    # def action_inicio(self, cr, uid, ids, context=None):
+    #     """Pasa al estado inicial
+    #     """
+    #     #pdb.set_trace()
+    #     self.write(cr, uid, ids, {'state': 'inicio'})
+    #     return True
+
+    # def action_final(self, cr, uid, ids, context=None):
+    #     """Pasa al estado final
+    #     """
+    #     self.write(cr, uid, ids, {'state': 'final'})
+    #     return True
 
 maquipal_nota()

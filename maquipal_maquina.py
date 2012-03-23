@@ -58,6 +58,7 @@ class product_product(osv.osv):
 
         for this in self.browse(cr, uid, ids, context=context):
             #pdb.set_trace()
+            
             if this.cliente_id.riesgo == False:
                 campo_riesgo = ''
             else:

@@ -30,14 +30,21 @@
 						<group colspan="2" col="2"> 
 							<field name="tema"/>
 							<field name="tipo"/>
+							<field name="state" string="Departamento"/>
 						</group>
 						<group colspan="2" col="2">
 							<field name="fecha_inicio"/>
 							<field name="fecha_final"/>
 						</group>
-						<group colspan="1">
-							
-						</group>
+						<group colspan="2" col="2">
+									<!-- <separator string="Acciones" colspan="2" /> -->
+									<!-- <field name="state" string="Departamento"/> -->
+									<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>
+									<button name="action_gestion" string="Pasar a gestion" states="borrador,comercial,almacen" type="object" icon="gtk-apply"/>
+									<button name="action_comercial" string="Pasar a comercial" states="gestion" type="object" icon="gtk-apply"/>
+									<button name="action_almacen" string="Pasar a almacen" states="gestion" type="object" icon="gtk-apply"/>
+									<button name="action_final" string="Pasar a final" states="gestion,comercial,almacen" type="object" icon="gtk-apply"/>
+				                </group>
 					</group>
 					<notebook colspan="4">
 						<page string="General">
@@ -54,16 +61,34 @@
 									<field name="modelo" string="Modelo" />
 									<field name="serie" string="Serie" />
 								</group>
+								<!-- <group colspan="2" col="2">
+									<separator string="Acciones" colspan="2" />
+									<field name="state" string="Departamento"/>
+									<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>
+									<button name="action_gestion" string="Pasar a gestion" states="borrador,comercial,almacen" type="object" icon="gtk-apply"/>
+									<button name="action_comercial" string="Pasar a comercial" states="gestion" type="object" icon="gtk-apply"/>
+									<button name="action_almacen" string="Pasar a almacen" states="gestion" type="object" icon="gtk-apply"/>
+									<button name="action_final" string="Pasar a final" states="gestion,comercial,almacen" type="object" icon="gtk-apply"/>
+				                </group> -->
 							</group>
 							<!-- <field name="tema" /> -->
 							<!-- <field name="fecha_inicio" /> -->
-							<field name="datos"/>
+							<separator string="Datos" colspan="4" />
+							<field name="datos" nolabel="1" colspan="4"/>
 							<!-- <field name="tipo"/> -->
 						</page>
 						<page string="Avisos">
 							<field name="avisos" nolabel="1" />
 						</page>
 				</notebook>
+				<!-- <group col="3" colspan="2">
+					<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>
+					<button name="action_gestion" string="Pasar a gestion" states="borrador,comercial,almacen" type="object" icon="gtk-apply"/>
+					<button name="action_comercial" string="Pasar a comercial" states="gestion" type="object" icon="gtk-apply"/>
+					<button name="action_almacen" string="Pasar a almacen" states="gestion" type="object" icon="gtk-apply"/>
+					<button name="action_final" string="Pasar a final" states="gestion,comercial,almacen" type="object" icon="gtk-apply"/>
+                    <field name="state" string="Departamento"/>
+                </group> -->
 				</form>
 			</field>
 		</record>
@@ -81,6 +106,7 @@
 					<field name="phone" />
 					<field name="maquina" />
 					<field name="tipo"/>
+					<field name="state" string="Departamento"/>
 				</tree>
 			</field>
 		</record>
