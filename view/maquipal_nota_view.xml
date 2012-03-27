@@ -30,21 +30,25 @@
 						<group colspan="2" col="2"> 
 							<field name="tema"/>
 							<field name="tipo"/>
-							<field name="state" string="Departamento"/>
+							<field name="estado" string="Estado"/>
 						</group>
 						<group colspan="2" col="2">
 							<field name="fecha_inicio"/>
 							<field name="fecha_final"/>
+							<field name="owner" string="Encargado"/>
+							<button
+		                         name="enviar_a"
+		                         string="Enviar a"
+		                         help="Envia la nota a otro usuario" icon="gtk-go-forward"
+		                         type="object"/>
 						</group>
-						<group colspan="2" col="2">
-									<!-- <separator string="Acciones" colspan="2" /> -->
-									<!-- <field name="state" string="Departamento"/> -->
-									<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>
+						<!-- <group colspan="2" col="2">
+									<<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>
 									<button name="action_gestion" string="Pasar a gestion" states="borrador,comercial,almacen" type="object" icon="gtk-apply"/>
 									<button name="action_comercial" string="Pasar a comercial" states="gestion" type="object" icon="gtk-apply"/>
 									<button name="action_almacen" string="Pasar a almacen" states="gestion" type="object" icon="gtk-apply"/>
 									<button name="action_final" string="Pasar a final" states="gestion,comercial,almacen" type="object" icon="gtk-apply"/>
-				                </group>
+				                </group> -->
 					</group>
 					<notebook colspan="4">
 						<page string="General">
@@ -106,7 +110,7 @@
 					<field name="phone" />
 					<field name="maquina" />
 					<field name="tipo"/>
-					<field name="state" string="Departamento"/>
+					<field name="estado" string="Estado"/>
 				</tree>
 			</field>
 		</record>

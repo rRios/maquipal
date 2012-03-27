@@ -1,0 +1,27 @@
+<openerp>
+	<data>
+		<!-- Form view -->
+		<record id="view_maquipal_envio" model="ir.ui.view">
+			<field name="name">maquipal.envio.view</field>
+			<field name="model">maquipal.envio</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Enviar a">
+					<field name="usuario_destino"/>
+					<!-- <button special="cancel" string="Cancel" icon="gtk-cancel"/> -->
+                    <button name="action_maquipal_envio" string="Enviar a" type="object" icon="gtk-go-forward"/>
+				</form>
+			</field>
+		</record>
+
+		<!-- wizard -->
+		<!-- <record id="action_maquipal_envio" model="ir.actions.act_window">
+			<field name="name">Enviar a</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">maquipal.envio</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="view_maquipal_envio"/>
+			<field name="target">new</field>
+		</record> -->
+	</data>
+</openerp>

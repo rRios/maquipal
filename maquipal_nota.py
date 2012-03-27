@@ -57,6 +57,17 @@ class maquipal_nota(osv.osv):
         maquina = self.pool.get('product.product').browse(cr, uid, maq)
         return {'value': {'modelo': maquina.modelo, 'serie': maquina.serie}}
 
+    def _get_default_user(self, cr, uid, context=None):
+        """Gives current user id
+        @param self: The object pointer
+        @param cr: the current row, from the database cursor,
+        @param uid: the current user’s ID for security checks,
+        @param context: A standard dictionary for contextual values
+        """
+        if context and context.get('portal', False):
+            return False
+        return uid
+
     _name = 'maquipal.nota'
     _description = 'Nota'
     _columns = {
@@ -72,48 +83,134 @@ class maquipal_nota(osv.osv):
         'datos': fields.text('Datos'),
         'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo', select=True),
         'avisos': fields.text('Avisos'),
-        'state': fields.selection([
-                    ('borrador', 'Borrador'),
-                    ('gestion', 'Gestion'),
-                    ('comercial', 'Comercial'),
-                    ('almacen', 'Almacen'),
-                    ('final', 'Final')], 'Estado', readonly=True, select=True),
+        'owner': fields.many2one('res.users', 'Destinatario', readonly=True),
+        'estado': fields.selection([
+                    ('no_comenzado', 'No Comenzado'),
+                    ('pte_proveedor', 'Pte. Proveedor'),
+                    ('llamar', 'Llamar'),
+                    ('en_curso', 'En Curso'),
+                    ('pte_cliente', 'Pte. Cliente'),
+                    ('ofertado', 'Ofertado'),
+                    ('retrasado', 'Retrasado'),
+                    ('terminado', 'Terminado'),
+                    ('entregado', 'Entregado'),
+                    ('avisado', 'Avisado'),
+                    ('recogen', 'Recogen'),
+                    ('recepcionado', 'Recepcionado'),
+                    ('urgente', 'Urgente')], 'Estado', select=True),
     }
     _defaults = {
         #'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),
         'fecha_inicio': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
-        'state': 'borrador',
+        'estado': 'no_comenzado',
+        'owner': _get_default_user,
     }
 
-    def action_borrador(self, cr, uid, ids, context=None):
-        """Pasa a borrador
-        """
-        self.write(cr, uid, ids, {'state': 'borrador'})
-        return True
+    def enviar_a(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        context.update({'active_ids': ids})
 
-    def action_gestion(self, cr, uid, ids, context=None):
-        """Pasa a gestion
-        """
-        self.write(cr, uid, ids, {'state': 'gestion'})
-        return True
+        data_obj = self.pool.get('ir.model.data')
+        data_id = data_obj._get_id(cr, uid, 'maquipal', 'view_maquipal_envio')
+        value = {}
 
-    def action_comercial(self, cr, uid, ids, context=None):
-        """Pasa a comercial
-        """
-        self.write(cr, uid, ids, {'state': 'comercial'})
-        return True
+        view_id = False
+        if data_id:
+            view_id = data_obj.browse(cr, uid, data_id, context=context).res_id
 
-    def action_almacen(self, cr, uid, ids, context=None):
-        """Pasa a almacen
-        """
-        self.write(cr, uid, ids, {'state': 'almacen'})
-        return True
+        value = {
+                'name': 'Enviar a',
+                'view_type': 'form',
+                'view_mode': 'form, tree',
+                'res_model': 'maquipal.envio',
+                'view_id': False,
+                'context': context,
+                'views': [(view_id, 'form')],
+                'type': 'ir.actions.act_window',
+                'target': 'new',
+                'nodestroy': True
+        }
 
-    def action_final(self, cr, uid, ids, context=None):
-        """Pasa a final
-        """
-        self.write(cr, uid, ids, {'state': 'final'})
-        return True
+        return value
+
+    # def action_no_comenzado(self, cr, uid, ids, context=None):
+    #     """Pasa a no comenzado
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'no_comenzado'})
+    #     return True
+
+    # def action_pte_proveedor(self, cr, uid, ids, context=None):
+    #     """Pasa a pte proveedor
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'pte_proveedor'})
+    #     return True
+
+    # def action_llamar(self, cr, uid, ids, context=None):
+    #     """Pasa a llamar
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'llamar'})
+    #     return True
+
+    # def action_en_curso(self, cr, uid, ids, context=None):
+    #     """Pasa a en curso
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'en_curso'})
+    #     return True
+
+    # def action_pte_cliente(self, cr, uid, ids, context=None):
+    #     """Pasa a pte cliente
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'pte_cliente'})
+    #     return True
+
+    # def action_ofertado(self, cr, uid, ids, context=None):
+    #     """Pasa a ofertado
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'ofertado'})
+    #     return True
+
+    # def action_retrasado(self, cr, uid, ids, context=None):
+    #     """Pasa a retrasado
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'retrasado'})
+    #     return True
+
+    # def action_terminado(self, cr, uid, ids, context=None):
+    #     """Pasa a terminado
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'terminado'})
+    #     return True
+
+    # def action_entregado(self, cr, uid, ids, context=None):
+    #     """Pasa a entregado
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'entregado'})
+    #     return True
+
+    # def action_avisado(self, cr, uid, ids, context=None):
+    #     """Pasa a avisado
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'avisado'})
+    #     return True
+
+    # def action_recogen(self, cr, uid, ids, context=None):
+    #     """Pasa a recogen
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'recogen'})
+    #     return True
+
+    # def action_recepcionado(self, cr, uid, ids, context=None):
+    #     """Pasa a recepcionado
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'recepcionado'})
+    #     return True
+
+    # def action_urgente(self, cr, uid, ids, context=None):
+    #     """Pasa a urgente
+    #     """
+    #     self.write(cr, uid, ids, {'estado': 'urgente'})
+    #     return True
 
     # def action_inicio(self, cr, uid, ids, context=None):
     #     """Pasa al estado inicial

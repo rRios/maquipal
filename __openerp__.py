@@ -13,13 +13,15 @@
         'resource',
         'product',
         'crm',
+        'board',
     ],
     'init_xml': [],
     'update_xml': [
+        'wizard/maquipal_envio_view.xml',
         'view/maquipal_partner_view.xml',
         'view/maquipal_maquina_view.xml',
         'view/maquipal_nota_view.xml',
-        'workflow/maquipal_workflow.xml',
+        'board_maquipal_view.xml',
     ],
     'demo_xml': [],
     'test': [
