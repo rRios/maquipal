@@ -130,6 +130,7 @@
 					<field name="maquina" />
 					<field name="tipo"/>
 					<field name="estado" string="Estado"/>
+					<field name="owner" string="Encargado"/>
 				</tree>
 			</field>
 		</record>
@@ -143,6 +144,7 @@
 		<record model="ir.actions.act_window" id="action_listado_simple">
 			<field name="name">maquipal.nota</field>
 			<field name="res_model">maquipal.nota</field>
+			<field name="domain">[('owner','=',uid)]</field>
 			<field name="view_id" ref="view_listado_notas_simple"/>
 		</record>
 		<menuitem name="Notas" parent="menu_maquipal" id="menu_maquipal_notas" action="action_nota_form"/>
