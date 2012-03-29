@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-		<!-- <record id="view_maquipal_notas_board_tree" model="ir.ui.view">
-			<field name="name">maquipal.notas.board.tree</field>
-			<field name="model">maquipal.nota</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="Mis notas">
-					<field name="phone"/>
-				</tree>
-			</field>
-		</record>
-
-		<record id="action_view_maquipal_notas_board_tree" model="ir.actions.act_window">
-			<field name="name">Mis notas abiertas</field>
-			<field name="res_model">maquipal.nota</field>
-			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-			<field name="view_id" ref="view_maquipal_notas_board_tree"/>
-		</record> -->
 
 		<record id="board_maquipal_form" model="ir.ui.view">
 			<field name="name">board.maquipal.form</field>
@@ -28,7 +10,8 @@
 				<form string="Mi Board">
 					<vpaned>
  						<child1>
-							<action colspan="4" name="%(action_nota_form)d" string="Notas Activas"/>
+ 							<action colspan="4" name="%(action_listado_simple)d" string="Notas Activas"/>
+							<!-- <action colspan="4" name="%(action_nota_form)d" string="Notas Activas"/> -->
 							<action colspan="4" name="%(action_calendario)d" string="Calendario"/>
 						</child1>
 					</vpaned>

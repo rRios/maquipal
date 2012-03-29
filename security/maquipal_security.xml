@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+
+		<record id="grupo_maquipal_usuario" model="res.groups">
+			<field name="name">Usuario</field>
+		</record>
+		<record id="grupo_maquipal_administrador" model="res.groups">
+			<field name="name">Administrador</field>
+		</record>
+
+		<record id="menu_maquipal_definitions" model="ir.ui.menu">
+			<field name="groups_id" eval="[(6,0,[ref('grupo_maquipal_administrador')])]"/>
+		</record>
+
+		<!-- <record model="ir.rule" id="maquipal_nota_rule">
+	        <field name="name">Maquipal nota</field>
+	        <field name="model_id" ref="model_maquipal_nota"/>
+	        <field name="global" eval="True"/>
+    	</record> -->
+	</data>
+</openerp>

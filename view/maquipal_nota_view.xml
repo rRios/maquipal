@@ -15,6 +15,7 @@
                     <field name="serie"/>
                     <field name="fecha_inicio"/>
                     <field name="tipo"/>
+                    <field name="owner" string="Encargado"/>
                 </search>
             </field>
         </record>
@@ -111,6 +112,24 @@
 					<field name="maquina" />
 					<field name="tipo"/>
 					<field name="estado" string="Estado"/>
+					<field name="owner" string="Encargado"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_listado_notas_simple" model="ir.ui.view">
+			<field name="name">maquipal.nota.tree2</field>
+			<field name="model">maquipal.nota</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Notas" position="inside">
+					<field name="fecha_inicio"/>
+					<field name="tema"/>
+					<field name="cliente_id" />
+					<field name="phone" />
+					<field name="maquina" />
+					<field name="tipo"/>
+					<field name="estado" string="Estado"/>
 				</tree>
 			</field>
 		</record>
@@ -119,7 +138,14 @@
 		<record model="ir.actions.act_window" id="action_nota_form">
 			<field name="name">maquipal.nota</field>
 			<field name="res_model">maquipal.nota</field>
+			<field name="view_id" ref="view_nota_tree"/>
 		</record>
-		<menuitem name="Notas" parent="menu_maquipal" id="menu_maquipal_notas" action="action_nota_form" />
+		<record model="ir.actions.act_window" id="action_listado_simple">
+			<field name="name">maquipal.nota</field>
+			<field name="res_model">maquipal.nota</field>
+			<field name="view_id" ref="view_listado_notas_simple"/>
+		</record>
+		<menuitem name="Notas" parent="menu_maquipal" id="menu_maquipal_notas" action="action_nota_form"/>
+		<!-- <menuitem name="Notas" parent="menu_maquipal" id="menu_maquipal_notas" action="action_listado_simple"/> -->
 	</data>
 </openerp>
