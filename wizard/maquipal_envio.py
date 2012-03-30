@@ -47,7 +47,8 @@ class maquipal_envio(osv.osv_memory):
         envio = self.browse(cr, uid, ids, context=context)
 
         vals = {
-            'owner': envio[0].usuario_destino.id
+            'owner': envio[0].usuario_destino.id,
+            'estado': 'no_comenzado',
         }
 
         nota.write(vals, context=context)
