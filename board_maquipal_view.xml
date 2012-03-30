@@ -2,6 +2,13 @@
 <openerp>
 	<data>
 
+		<record model="ir.actions.act_window" id="action_listado_calendario">
+			<field name="name">Listado Calendario</field>
+			<field name="res_model">crm.meeting</field>
+			<field name="domain">[('user_id','=',uid)]</field>
+			<field name="view_id" ref="crm.crm_case_tree_view_meet"/>
+		</record>
+
 		<record id="board_maquipal_form" model="ir.ui.view">
 			<field name="name">board.maquipal.form</field>
 			<field name="model">board.board</field>
@@ -12,7 +19,8 @@
  						<child1>
  							<action colspan="4" name="%(action_listado_simple)d" string="Notas Activas"/>
 							<!-- <action colspan="4" name="%(action_nota_form)d" string="Notas Activas"/> -->
-							<action colspan="4" name="%(action_calendario)d" string="Calendario"/>
+							<!-- <action colspan="4" name="%(action_calendario)d" string="Calendario"/> -->
+							<action colspan="4" name="%(action_listado_calendario)d" string="Calendario"/>
 						</child1>
 					</vpaned>
 				</form>

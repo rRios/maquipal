@@ -189,6 +189,11 @@
 			<field name="res_model">crm.meeting</field>
 			<field name="view_mode">calendar,tree,form,gantt</field>
 		</record>
+		<record model="ir.actions.act_window" id="action_calendario_lista">
+			<field name="name">crm.meeting</field>
+			<field name="res_model">crm.meeting</field>
+			<field name="view_type">tree</field>
+		</record>
 		<menuitem name="Calendario" parent="menu_maquipal" id="menu_maquipal_calendario" action="action_calendario" />
 
 
