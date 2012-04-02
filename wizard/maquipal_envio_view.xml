@@ -8,11 +8,34 @@
 			<field name="arch" type="xml">
 				<form string="Enviar a">
 					<field name="usuario_destino"/>
+					<field name="comentario"/>
+					<!-- <field name="nota_id"/> -->
 					<button special="cancel" string="Cancel" icon="gtk-cancel"/>
                     <button name="action_maquipal_envio" string="Enviar a" type="object" icon="gtk-go-forward"/>
 				</form>
 			</field>
 		</record>
+
+		<record id="view_maquipal_envio_tree" model="ir.ui.view">
+			<field name="name">maquipal.envio.tree.view</field>
+			<field name="model">maquipal.envio</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Historico">
+					<field name="usuario_origen"/>
+					<field name="usuario_destino" string="Destinatario"/>
+					<field name="comentario"/>
+					<field name="fecha_envio"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window" id="action_envio_form">
+			<field name="name">maquipal.envio</field>
+			<field name="res_model">maquipal.envio</field>
+		</record>
+		<menuitem name="Envios" parent="menu_maquipal" id="menu_maquipal_lista_historico" action="action_envio_form" />
 
 		<!-- wizard -->
 		<!-- <record id="action_maquipal_envio" model="ir.actions.act_window">

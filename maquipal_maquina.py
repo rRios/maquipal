@@ -83,6 +83,7 @@ class product_product(osv.osv):
                 'name': 'Nueva Nota',
                 'view_type': 'form',
                 'view_mode': 'tree,form',
+                #'view_id': 'product_normal_form_view2',
                 'res_model': 'maquipal.nota',
                 'res_id' : new_nota,
                 'views': [(id2, 'form'), (id3, 'tree'), (False, 'calendar')],

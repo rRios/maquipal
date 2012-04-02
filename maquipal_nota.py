@@ -70,6 +70,7 @@ class maquipal_nota(osv.osv):
 
     _name = 'maquipal.nota'
     _description = 'Nota'
+    _rec_name = 'fecha_inicio'
     _columns = {
         'cliente_id': fields.many2one('res.partner', 'Cliente', select=True),
         'phone': fields.char('Telefono', size=64),
@@ -98,6 +99,7 @@ class maquipal_nota(osv.osv):
                     ('recogen', 'Recogen'),
                     ('recepcionado', 'Recepcionado'),
                     ('urgente', 'Urgente')], 'Estado', select=True),
+        'historico': fields.one2many('maquipal.envio', 'nota_id', 'Historico')
     }
     _defaults = {
         #'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),
@@ -125,6 +127,7 @@ class maquipal_nota(osv.osv):
                 'view_mode': 'form, tree',
                 'res_model': 'maquipal.envio',
                 'view_id': False,
+                #'view_id': 'view_nota_form2',
                 'context': context,
                 'views': [(view_id, 'form')],
                 'type': 'ir.actions.act_window',

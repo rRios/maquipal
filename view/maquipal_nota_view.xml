@@ -85,6 +85,16 @@
 						<page string="Avisos">
 							<field name="avisos" nolabel="1" />
 						</page>
+						<page string="Historico">
+							<field name="historico" colspan="4" nolabel="1" context="{'nota_id': active_id}">
+								<tree string="Historico">
+									<field name="usuario_origen"/>
+									<field name="usuario_destino" string="Destinatario"/>
+									<field name="comentario"/>
+									<field name="fecha_envio"/>
+								</tree>
+							</field>
+						</page>
 				</notebook>
 				<!-- <group col="3" colspan="2">
 					<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>
@@ -97,6 +107,15 @@
 				</form>
 			</field>
 		</record>
+
+		<!-- <record id="view_nota_form2" model="ir.ui.view">
+			<field name="name">maquipal.nota.form2</field>
+			<field name="model">maquipal.nota</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<button name="enviar_a" position="replace"/>
+			</field>
+		</record> -->
 
 		<!-- Nota Tree View -->
 		<record id="view_nota_tree" model="ir.ui.view">

@@ -52,6 +52,7 @@
         assert lanota.maquina.name == "Nueva Maquina de cliente3"
         assert lanota.modelo == "000000"
         assert lanota.serie == "000000"
+        assert lanota.owner.id == uid
 
 -   |
     Llamamos a onchange_partner_id para actualizar los datos del cliente
