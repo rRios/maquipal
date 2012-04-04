@@ -69,52 +69,30 @@ class maquipal_envio(osv.osv_memory):
     def action_maquipal_envio(self, cr, uid, ids, context=None):
         """ Cambia el owner de la nota y regresa al board
         """
-        record_id = context and context.get('active_id') or False
+        record_id = context and context.get('active_ids') or False
         if not record_id:
             return {'type': 'ir.actions.act_window_close'}
 
-        #obtenemos las vistas del destino
-        # models_data = self.pool.get('ir.model.data')
-        # board_view_form = models_data._get_id(
-        #     cr, uid, 'maquipal', 'board_maquipal_form')
-        # if board_view_form:
-        #     board_view_form = models_data.browse(
-        #         cr, uid, board_view_form, context=context).res_id
 
-        #modificamos la nota
         notas = self.pool.get('maquipal.nota')
         nota = notas.browse(cr, uid, record_id, context=context)
 
         envio = self.browse(cr, uid, ids, context=context)
-        #pdb.set_trace()
-        #envio[0].nota_id = nota.id
-        #envio[0].write({'nota_id': nota.id}, context=context)
-        #self.write(cr, uid, ids, {'nota_id': nota.id}, context=context)
-        # self.nota_id = nota.id
+
         vals = {
             'owner': envio[0].usuario_destino.id,
             'estado': 'no_comenzado',
         }
 
-        #pdb.set_trace()
-        nota.write(vals, context=context)
-        #nota.write(cr, uid, vals)
+        nota[0].write(vals, context=context)
+
         message = "La nota ha sido enviada a '%s'" % envio[0].usuario_destino.name
-        self.log(cr, uid, nota.id, message)
+        self.log(cr, uid, nota[0].id, message)
 
         vals2 = {
-            'nota_id': nota.id,
+            'nota_id': nota[0].id,
         }
         envio[0].write(vals2, context = context)
-
-
-        # return {
-        #     'view_type': 'form',
-        #     'view_mode': 'form,tree',
-        #     'view_id': board_view_form,
-        #     'domain': '[]',
-        #     'type': 'ir.actions.act_window',
-        # }
 
 
         return {'type': 'ir.actions.act_window_close'}

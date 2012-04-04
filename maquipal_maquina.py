@@ -79,18 +79,19 @@ class product_product(osv.osv):
                     'modelo': this.modelo,
                     'serie': this.serie,
             }, context=context)
+
+
             value = {
                 'name': 'Nueva Nota',
                 'view_type': 'form',
-                'view_mode': 'tree,form',
-                #'view_id': 'product_normal_form_view2',
+                'view_mode': 'form,tree',
                 'res_model': 'maquipal.nota',
                 'res_id' : new_nota,
                 'views': [(id2, 'form'), (id3, 'tree'), (False, 'calendar')],
                 'target': 'current',
                 'type': 'ir.actions.act_window',
             }
-        #pdb.set_trace()
+
         return value
 
     # def default_get(self, cr, uid, fields, context=None):

@@ -121,6 +121,8 @@ class maquipal_nota(osv.osv):
         if data_id:
             view_id = data_obj.browse(cr, uid, data_id, context=context).res_id
 
+        #pdb.set_trace()
+
         value = {
                 'name': 'Enviar a',
                 'view_type': 'form',
