@@ -31,11 +31,11 @@
 		</record>
 
 
-		<record model="ir.actions.act_window" id="action_envio_form">
+		<!-- <record model="ir.actions.act_window" id="action_envio_form">
 			<field name="name">maquipal.envio</field>
 			<field name="res_model">maquipal.envio</field>
 		</record>
-		<menuitem name="Envios" parent="menu_maquipal" id="menu_maquipal_lista_historico" action="action_envio_form" />
+		<menuitem name="Envios" parent="menu_maquipal" id="menu_maquipal_lista_historico" action="action_envio_form" /> -->
 
 		<!-- wizard -->
 		<!-- <record id="action_maquipal_envio" model="ir.actions.act_window">

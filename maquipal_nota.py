@@ -98,8 +98,28 @@ class maquipal_nota(osv.osv):
                     ('avisado', 'Avisado'),
                     ('recogen', 'Recogen'),
                     ('recepcionado', 'Recepcionado'),
-                    ('urgente', 'Urgente')], 'Estado', select=True),
-        'historico': fields.one2many('maquipal.envio', 'nota_id', 'Historico')
+                    ('urgente', 'Urgente'),
+                    ('cerrado', 'Cerrado')], 'Estado', select=True),
+        'historico': fields.one2many('maquipal.envio', 'nota_id', 'Historico'),
+        'resultado': fields.selection([
+                    ('vendido', 'Vendido'),
+                    ('perdido', 'Perdido')], 'Resultado', select=True),
+        'perdido_motivo': fields.selection([
+                    ('precio', 'Precio'),
+                    ('retraso', 'Retraso'),
+                    ('plazo_entrega', 'Plazo de entrega'),
+                    ('afinidad', 'Afinidad'),
+                    ('marca_calidad', 'Marca - Calidad'),
+                    ('mal_servicio', 'Mal servicio')], 'Motivo de la perdida'),
+        'perdido_explicacion': fields.text('Comentarios'),
+        'vendido_llegada': fields.date('Dia de llegada'),
+        'vendido_entrega': fields.date('Dia de entrega'),
+        'vendido_transportista': fields.char('Transportista', size=64),
+        'vendido_portes': fields.selection([
+                    ('pagados', 'Pagados'),
+                    ('debidos', 'Debidos')], 'Portes'),
+        'vendido_proveedor': fields.char('Proveedor', size=64),
+        'vendido_cobrar_portes': fields.char('Cobrar portes', size=64),
     }
     _defaults = {
         #'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),

@@ -8,13 +8,26 @@
             <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Notas">
+                	<filter icon="terp-check"
+	                    string="Activas"
+	                    name="activas" help="Activas"
+	                    domain="[('estado','!=','cerrado')]"/>
+	                <filter icon="terp-check"
+	                    string="Pedidos"
+	                    name="pedidos" help="Pedidos"
+	                    domain="[('tipo','!=','pedido')]"/>
+	                <filter icon="terp-check"
+	                    string="Consultas"
+	                    name="consultas" help="Consultas"
+	                    domain="[('tipo','!=','consulta')]"/>
+	                <newline/>
                 	<field name="tema"/>
                     <field name="cliente_id"/>
                     <field name="maquina"/>
                     <field name="modelo"/>
                     <field name="serie"/>
                     <field name="fecha_inicio"/>
-                    <field name="tipo"/>
+                    <!-- <field name="tipo"/> -->
                     <field name="owner" string="Encargado"/>
                 </search>
             </field>
@@ -95,6 +108,23 @@
 								</tree>
 							</field>
 						</page>
+						<page string="Resultado">
+							<group colspan="4" col="2">
+								<field name="resultado"/>
+							</group>
+							<group colspan="4" col="2" attrs="{'invisible':['|',('resultado','==','perdido'),('resultado','==','')]}">
+								<field name="vendido_llegada"/>
+								<field name="vendido_entrega"/>
+								<field name="vendido_proveedor"/>
+								<field name="vendido_transportista"/>
+								<field name="vendido_portes"/>
+								<field name="vendido_cobrar_portes"/>
+							</group>
+							<group colspan="4" col="2" attrs="{'invisible':['|',('resultado','==','vendido'),('resultado','==','')]}">
+								<field name="perdido_motivo"/>
+								<field name="perdido_explicacion"/>
+							</group>
+						</page>
 				</notebook>
 				<!-- <group col="3" colspan="2">
 					<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>
@@ -159,11 +189,12 @@
 			<field name="name">maquipal.nota</field>
 			<field name="res_model">maquipal.nota</field>
 			<field name="view_id" ref="view_nota_tree"/>
+			<field name="context">{'search_default_activas':1}</field>
 		</record>
 		<record model="ir.actions.act_window" id="action_listado_simple">
 			<field name="name">maquipal.nota</field>
 			<field name="res_model">maquipal.nota</field>
-			<field name="domain">[('owner','=',uid)]</field>
+			<field name="domain">[('owner','=',uid),('estado','!=','cerrado')]</field>
 			<field name="view_id" ref="view_listado_notas_simple"/>
 		</record>
 		<menuitem name="Notas" parent="menu_maquipal" id="menu_maquipal_notas" action="action_nota_form"/>

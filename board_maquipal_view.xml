@@ -37,5 +37,6 @@
 		</record>
 
 		<menuitem icon="terp-project" id="menu_maquipal" name="Maquipal" sequence="10" action="open_board_maquipal"/>
+
 	</data>
 </openerp>
