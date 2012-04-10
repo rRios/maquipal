@@ -5,6 +5,22 @@ from datetime import datetime
 import time
 import pdb
 
+AVAILABLE_STATES = [
+    ('no_comenzado', 'No Comenzado'),
+    ('urgente', 'Urgente'),
+    ('pte_proveedor', 'Pte. Proveedor'),
+    ('llamar', 'Llamar'),
+    ('en_curso', 'En Curso'),
+    ('pte_cliente', 'Pte. Cliente'),
+    ('ofertado', 'Ofertado'),
+    ('retrasado', 'Retrasado'),
+    ('entregado', 'Entregado'),
+    ('avisado', 'Avisado'),
+    ('recogen', 'Recogen'),
+    ('recepcionado', 'Recepcionado'),
+    ('cerrado', 'Cerrado'),
+]
+
 class maquipal_nota(osv.osv):
     def onchange_partner_id(self, cr, uid, ids, part, email=False):
         """This function returns value of partner address based on partner
@@ -85,21 +101,7 @@ class maquipal_nota(osv.osv):
         'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo', select=True),
         'avisos': fields.text('Avisos'),
         'owner': fields.many2one('res.users', 'Destinatario', readonly=True),
-        'estado': fields.selection([
-                    ('no_comenzado', 'No Comenzado'),
-                    ('pte_proveedor', 'Pte. Proveedor'),
-                    ('llamar', 'Llamar'),
-                    ('en_curso', 'En Curso'),
-                    ('pte_cliente', 'Pte. Cliente'),
-                    ('ofertado', 'Ofertado'),
-                    ('retrasado', 'Retrasado'),
-                    ('terminado', 'Terminado'),
-                    ('entregado', 'Entregado'),
-                    ('avisado', 'Avisado'),
-                    ('recogen', 'Recogen'),
-                    ('recepcionado', 'Recepcionado'),
-                    ('urgente', 'Urgente'),
-                    ('cerrado', 'Cerrado')], 'Estado', select=True),
+        'estado': fields.selection(AVAILABLE_STATES, 'Estado', select=True),
         'historico': fields.one2many('maquipal.envio', 'nota_id', 'Historico'),
         'resultado': fields.selection([
                     ('vendido', 'Vendido'),
@@ -148,6 +150,38 @@ class maquipal_nota(osv.osv):
                 'view_type': 'form',
                 'view_mode': 'form, tree',
                 'res_model': 'maquipal.envio',
+                'view_id': False,
+                #'view_id': 'view_nota_form2',
+                'context': context,
+                'views': [(view_id, 'form')],
+                'type': 'ir.actions.act_window',
+                'target': 'new',
+                'nodestroy': True
+        }
+
+        return value
+
+
+    def cerrar_nota(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        context.update({'active_ids': ids})
+
+        data_obj = self.pool.get('ir.model.data')
+        data_id = data_obj._get_id(cr, uid, 'maquipal', 'view_maquipal_cerrar_nota')
+        value = {}
+
+        view_id = False
+        if data_id:
+            view_id = data_obj.browse(cr, uid, data_id, context=context).res_id
+
+        #pdb.set_trace()
+
+        value = {
+                'name': 'Cerrar Nota',
+                'view_type': 'form',
+                'view_mode': 'form, tree',
+                'res_model': 'maquipal.cerrar.nota',
                 'view_id': False,
                 #'view_id': 'view_nota_form2',
                 'context': context,

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Form view -->
+		<record id="view_maquipal_cerrar_nota" model="ir.ui.view">
+			<field name="name">maquipal.cerrar.nota.view</field>
+			<field name="model">maquipal.cerrar.nota</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Cerrar">
+					<group colspan="4" col="2">
+						<field name="resultado"/>
+						<button special="cancel" string="Cancel" icon="gtk-cancel"/>
+						<button name="action_maquipal_cerrar_nota" string="Cerrar" type="object" icon="gtk-go-forward"/>
+					</group>
+					<group colspan="4" col="2" attrs="{'invisible':['|',('resultado','==','perdido'),('resultado','==','')]}">
+						<field name="vendido_llegada"/>
+						<field name="vendido_entrega"/>
+						<field name="vendido_proveedor"/>
+						<field name="vendido_transportista"/>
+						<field name="vendido_portes"/>
+						<field name="vendido_cobrar_portes"/>
+					</group>
+					<group colspan="4" col="2" attrs="{'invisible':['|',('resultado','==','vendido'),('resultado','==','')]}">
+						<field name="perdido_motivo"/>
+						<field name="perdido_explicacion"/>
+					</group>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

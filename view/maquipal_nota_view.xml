@@ -55,6 +55,11 @@
 		                         string="Enviar a"
 		                         help="Envia la nota a otro usuario" icon="gtk-go-forward"
 		                         type="object"/>
+		                    <button
+		                         name="cerrar_nota"
+		                         string="Cerrar Nota"
+		                         help="Cerrar Nota" icon="gtk-go-forward"
+		                         type="object"/>
 						</group>
 						<!-- <group colspan="2" col="2">
 									<<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>

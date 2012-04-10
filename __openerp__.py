@@ -20,6 +20,7 @@
         'security/maquipal_security.xml',
         'security/ir.model.access.csv',
         'wizard/maquipal_envio_view.xml',
+        'wizard/maquipal_cerrar_nota_view.xml',
         'view/maquipal_partner_view.xml',
         'view/maquipal_maquina_view.xml',
         'view/maquipal_nota_view.xml',
