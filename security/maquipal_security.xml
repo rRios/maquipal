@@ -5,6 +5,9 @@
 		<record id="grupo_maquipal_usuario" model="res.groups">
 			<field name="name">Usuario</field>
 		</record>
+		<!-- <record id="grupo_maquipal_visor" model="res.groups">
+			<field name="name">Visor</field>
+		</record> -->
 		<record id="grupo_maquipal_administrador" model="res.groups">
 			<field name="name">Administrador</field>
 		</record>
@@ -14,9 +17,16 @@
 		</record>
 
 		<!-- <record model="ir.rule" id="maquipal_nota_rule">
-	        <field name="name">Maquipal nota</field>
+	        <field name="name">Maquipal nota usuario</field>
 	        <field name="model_id" ref="model_maquipal_nota"/>
-	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('owner','=',user.id),('owner','=',False)]</field>
+        	<field name="groups" eval="[(4, ref('maquipal.grupo_maquipal_usuario'))]"/>
+    	</record> -->
+    	<!-- <record model="ir.rule" id="maquipal_nota_rule_visor">
+	        <field name="name">Maquipal nota usuario visor</field>
+	        <field name="model_id" ref="model_maquipal_nota"/>
+	        <field name="domain_force">[('owner','!=',user.id)]</field>
+        	<field name="groups" eval="[(4, ref('maquipal.grupo_maquipal_visor'))]"/>
     	</record> -->
 	</data>
 </openerp>

@@ -36,7 +36,8 @@
 			<field name="view_id" ref="board_maquipal_form"/>
 		</record>
 
-		<menuitem icon="terp-project" id="menu_maquipal" name="Maquipal" sequence="10" action="open_board_maquipal"/>
+		<menuitem icon="terp-project" web_icon="images/logo-piston-bw.png" web_icon_hover="images/icon.png"
+				  id="menu_maquipal" name="Maquipal" sequence="10" action="open_board_maquipal"/>
 
 	</data>
 </openerp>

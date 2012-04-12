@@ -158,7 +158,7 @@
 			<field name="model">maquipal.nota</field>
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
-				<tree string="Notas" position="inside">
+				<tree colors="red:estado=='no_comenzado';blue:estado=='urgente';gray:estado=='cerrado'" string="Notas" position="inside">
 					<field name="fecha_inicio"/>
 					<field name="tema"/>
 					<field name="cliente_id" />
@@ -176,7 +176,7 @@
 			<field name="model">maquipal.nota</field>
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
-				<tree string="Notas" position="inside">
+				<tree colors="red:estado=='no_comenzado';blue:estado=='urgente';gray:estado=='cerrado'" string="Notas" position="inside">
 					<field name="fecha_inicio"/>
 					<field name="tema"/>
 					<field name="cliente_id" />
