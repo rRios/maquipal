@@ -210,6 +210,13 @@
 	        </field>
 	    </record>
 
+	    <delete model="ir.values" search="[('name','=','action_partner_sms_send')]"/>
+	    <delete model="ir.values" search="[('name','=','base.action_partner_mass_mail')]"/>
+	    <delete model="ir.values" search="[('name','=','crm_partner2opportunity')]"/>
+	    <delete model="ir.values" search="[('name','=','act_res_partner_event')]"/>
+	    <delete model="ir.values" search="[('name','=','act_res_partner_emails')]"/>
+	    <report id="res_partner_address_report" model="res.partner" name="res.partner.address" string="Labels" xml="base/res/report/partner_address.xml" xsl="base/res/report/partner_address.xsl" groups="maquipal.grupo_maquipal_visor"/>
+
 	</data>
 </openerp>
 

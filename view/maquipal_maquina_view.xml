@@ -126,5 +126,8 @@
 			<field name="res_model">product.product</field>
 		</record>
 		<menuitem name="Maquinas" parent="menu_maquipal" id="menu_maquipal_maquinas" action="action_maquina_form" />
+
+        <delete model="ir.values" search="[('name','=','action_product_price_list')]"/>
+
 	</data>
 </openerp>

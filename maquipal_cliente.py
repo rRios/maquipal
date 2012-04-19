@@ -131,3 +131,4 @@ class maquipal_calendario(osv.osv):
     _order = "date desc"
 
 maquipal_calendario()
+

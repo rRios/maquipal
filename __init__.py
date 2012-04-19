@@ -3,5 +3,6 @@
 import maquipal_cliente
 import maquipal_maquina
 import maquipal_nota
-import wizard.maquipal_envio
-import wizard.maquipal_cerrar_nota
+import wizard
+#import wizard.maquipal_envio
+#import wizard.maquipal_cerrar_nota

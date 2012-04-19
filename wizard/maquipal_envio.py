@@ -15,6 +15,7 @@ class maquipal_envio(osv.osv_memory):
         'comentario': fields.text('Comentario'),
         'nota_id': fields.many2one('maquipal.nota', 'Nota'),
         'fecha_envio': fields.date('Fecha envio', readonly=True, select=True),
+        'urgente': fields.boolean('Urgente'),
     }
 
     _rec_name = 'usuario_destino'
@@ -79,9 +80,13 @@ class maquipal_envio(osv.osv_memory):
 
         envio = self.browse(cr, uid, ids, context=context)
 
+        elestado = 'no_comenzado'
+        if envio[0].urgente:
+            elestado = 'urgente'
+
         vals = {
             'owner': envio[0].usuario_destino.id,
-            'estado': 'no_comenzado',
+            'estado': elestado,
         }
 
         nota[0].write(vals, context=context)
