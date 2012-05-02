@@ -96,6 +96,7 @@ class maquipal_nota(osv.osv):
         'serie': fields.char('Serie', size=64, select=True),
         'fecha_inicio': fields.date('Fecha inicio', readonly=True, select=True),
         'fecha_final': fields.date('Fecha final', readonly=True),
+        'fecha_contestacion': fields.date('Fecha contestacion'),
         'tema': fields.char('Tema', size=64, select=True),
         'datos': fields.text('Datos'),
         'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo', select=True),
@@ -122,6 +123,7 @@ class maquipal_nota(osv.osv):
                     ('debidos', 'Debidos')], 'Portes'),
         'vendido_proveedor': fields.char('Proveedor', size=64),
         'vendido_cobrar_portes': fields.char('Cobrar portes', size=64),
+        'vendido_explicacion': fields.text('Comentarios'),
     }
     _defaults = {
         #'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),

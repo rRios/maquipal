@@ -8,6 +8,7 @@ class product_product(osv.osv):
     _description = 'Maquina'
     _inherit = 'product.product'
     _columns = {
+        'marca': fields.char('Marca', size=64, select=True),
         'modelo': fields.char('Modelo', size=64, required=True, select=True),
         'serie': fields.char('Serie', size=64, required=True, select=True),
         'cliente_id': fields.many2one('res.partner', 'Cliente', required=True, select=True),

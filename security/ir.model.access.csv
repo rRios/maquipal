@@ -5,3 +5,4 @@ access_product_product,product.product,model_product_product,maquipal.grupo_maqu
 access_res_partner,res.partner.crm.user,base.model_res_partner,maquipal.grupo_maquipal_usuario,1,1,1,0
 access_res_partner_address,res.partner.address.crm.user,base.model_res_partner_address,maquipal.grupo_maquipal_usuario,1,1,1,0
 access_res_partner_category,res.partner.category.crm.user,base.model_res_partner_category,maquipal.grupo_maquipal_usuario,1,1,1,0
+access_crm_meeting,crm.meeting,model_crm_meeting,maquipal.grupo_maquipal_usuario,1,1,1,0

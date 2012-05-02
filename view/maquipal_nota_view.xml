@@ -15,11 +15,11 @@
 	                <filter icon="terp-check"
 	                    string="Pedidos"
 	                    name="pedidos" help="Pedidos"
-	                    domain="[('tipo','!=','pedido')]"/>
+	                    domain="[('tipo','=','pedido')]"/>
 	                <filter icon="terp-check"
 	                    string="Consultas"
 	                    name="consultas" help="Consultas"
-	                    domain="[('tipo','!=','consulta')]"/>
+	                    domain="[('tipo','=','consulta')]"/>
 	                <newline/>
                 	<field name="tema"/>
                     <field name="cliente_id"/>
@@ -49,6 +49,7 @@
 						<group colspan="2" col="2">
 							<field name="fecha_inicio"/>
 							<field name="fecha_final"/>
+							<field name="fecha_contestacion"/>
 							<field name="owner" string="Encargado"/>
 							<button
 		                         name="enviar_a"
@@ -98,11 +99,13 @@
 							<!-- <field name="fecha_inicio" /> -->
 							<separator string="Datos" colspan="4" />
 							<field name="datos" nolabel="1" colspan="4"/>
+							<separator string="Avisos" colspan="4" />
+							<field name="avisos" nolabel="1" />
 							<!-- <field name="tipo"/> -->
 						</page>
-						<page string="Avisos">
+						<!-- <page string="Avisos">
 							<field name="avisos" nolabel="1" />
-						</page>
+						</page> -->
 						<page string="Historico">
 							<field name="historico" colspan="4" nolabel="1" context="{'nota_id': active_id}">
 								<tree string="Historico">
@@ -167,6 +170,7 @@
 					<field name="tipo"/>
 					<field name="estado" string="Estado"/>
 					<field name="owner" string="Encargado"/>
+					<field name="resultado"/>
 				</tree>
 			</field>
 		</record>
@@ -185,6 +189,7 @@
 					<field name="tipo"/>
 					<field name="estado" string="Estado"/>
 					<field name="owner" string="Encargado"/>
+					<field name="resultado"/>
 				</tree>
 			</field>
 		</record>

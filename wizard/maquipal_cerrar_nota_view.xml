@@ -20,6 +20,7 @@
 						<field name="vendido_transportista"/>
 						<field name="vendido_portes"/>
 						<field name="vendido_cobrar_portes"/>
+						<field name="vendido_explicacion"/>
 					</group>
 					<group colspan="4" col="2" attrs="{'invisible':['|',('resultado','==','vendido'),('resultado','==','')]}">
 						<field name="perdido_motivo"/>

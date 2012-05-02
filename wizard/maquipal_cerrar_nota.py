@@ -71,6 +71,13 @@ class maquipal_cerrar_nota(osv.osv_memory):
 
 		return lanota.vendido_cobrar_portes
 
+	def _get_default_vendido_explicacion(self, cr, uid, ids, context=None):
+		""" Obtiene vendido_explicacion """
+		notas = self.pool.get('maquipal.nota')
+		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+
+		return lanota.vendido_explicacion
+
 	_name = 'maquipal.cerrar.nota'
 	_descrption = 'Wizard para cerrar una nota'
 	_columns = {
@@ -93,6 +100,7 @@ class maquipal_cerrar_nota(osv.osv_memory):
                     ('debidos', 'Debidos')], 'Portes'),
         'vendido_proveedor': fields.char('Proveedor', size=64),
         'vendido_cobrar_portes': fields.char('Cobrar portes', size=64),
+        'vendido_explicacion': fields.text('Comentarios'),
 	}
 	_defaults = {
 		'resultado': _get_default_resultado,
@@ -104,6 +112,7 @@ class maquipal_cerrar_nota(osv.osv_memory):
 		'vendido_portes': _get_default_vendido_portes,
 		'vendido_proveedor': _get_default_vendido_proveedor,
 		'vendido_cobrar_portes': _get_default_vendido_cobrar_portes,
+		'vendido_explicacion': _get_default_vendido_explicacion,
 	}
 
 	def action_cancel(self, cr, uid, ids, context=None):
@@ -141,6 +150,7 @@ class maquipal_cerrar_nota(osv.osv_memory):
 			'vendido_portes': this[0].vendido_portes,
 			'vendido_proveedor': this[0].vendido_proveedor,
 			'vendido_cobrar_portes': this[0].vendido_cobrar_portes,
+			'vendido_explicacion': this[0].vendido_explicacion,
 			'fecha_final': fecha_final,
 			'estado': 'cerrado',
 		}

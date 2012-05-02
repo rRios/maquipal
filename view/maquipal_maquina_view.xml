@@ -11,6 +11,7 @@
                 <search string="Product" position="replace">
                     <search string="Product">
                         <field name="name"/>
+                        <field name="marca"/>
                         <field name="modelo"/>
                         <field name="serie"/>
                         <field name="cliente_id"/>
@@ -37,6 +38,7 @@
                     <group colspan="4" col="2">
                         <separator string="Name" colspan="2"/>
                         <field name="name"/>
+                        <field name="marca"/>
                         <field name="cliente_id"/>
                     </group>
                     <group colspan="2" col="2">
@@ -112,6 +114,7 @@
 		    	<tree  string="Products" position="replace">
                     <tree string="Products">
                         <field name="name"/>
+                        <field name="marca"/>
                         <field name="modelo"/>
                         <field name="serie"/>
                         <field name="cliente_id"/>
