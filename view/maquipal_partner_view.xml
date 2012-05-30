@@ -22,7 +22,9 @@
 		<record id="view_partner_form" model="ir.ui.view">
 			<field name="name">res.partner.form.inherit</field>
 			<field name="model">res.partner</field>
-			<field name="inherit_id" ref="base.view_partner_form"/>
+			<!-- <field name="inherit_id" ref="base.view_partner_form"/> -->
+			<!-- <field name="inherit_id" ref="crm.view_crm_partner_info_form1"/> -->
+			<field name="inherit_id" ref="base.view_crm_partner_info_History"/>
 			<field name="arch" type="xml">
 
 				<form string="Partners" col='1' position="replace">
@@ -84,8 +86,12 @@
                             <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                             <newline/>
                         </page>
-                        <page string="History" groups="base.group_extended" invisible="True">
+
+                        <page string="History" groups="base.group_extended" invisible="1">
+                        	
                         </page>
+                       
+
                         <page string="Avisos">
                             <field colspan="4" name="comment" nolabel="1"/>
                         </page>
@@ -115,6 +121,7 @@
 									<field name="name" string="Asunto"/>
 									<field name="tipo" string="Tipo"/>
 									<field name="date" string="Fecha"/>
+									<!-- <field name="description"/> -->
 								</tree>
 							</field>
 						</page>
@@ -130,7 +137,8 @@
 			<field name="name">res.partner.tree.inherit</field>
 			<field name="model">res.partner</field>
 			<field name="type">tree</field>
-			<field name="inherit_id" ref="base.view_partner_tree"/>
+			<!-- <field name="inherit_id" ref="base.view_partner_tree"/> -->
+			<field name="inherit_id" ref="crm.view_partners_tree_crm2"/>
 			<field name="arch" type="xml">
                 <tree string="Partners" position="replace">
                 	<tree string="Partners">
@@ -140,6 +148,7 @@
                 		<field name="phone"/>
                 		<field name="elcontacto"/>
                 		<field name="country" invisible="1"/>
+                		<field name="section_id" invisible="1"/>
                 	</tree>
                 </tree>
 			</field>
@@ -204,9 +213,20 @@
 	        <field name="type">form</field>
 	        <field name="inherit_id" ref="crm.crm_case_form_view_meet"/>
 	        <field name="arch" type="xml">
+	        	<field name="location" position="replace"/>
+	        	<field name="categ_id" position="replace"/>
+	        	<field name="allday" position="replace"/>
+	        	<field name="alarm_id" position="replace"/>
+	        	<page string="Recurrency Option" position="replace"/>
+	        	<group colspan="2" col="4" attrs="{'readonly': ['|', ('recurrent_uid','!=',False), ('state','=','done')]}" position="replace"/>
+	        	<page string="Invitation Detail" position="replace"/>
 	        	<field name="user_id" position="after">
 	        		<field name="tipo" string="Tipo"/>
 	        	</field>
+	        	<field name="section_id" position="replace"/>
+	        	<separator string="Visibility" position="replace"/>
+	        	<field name="class" position="replace"/>
+	        	<field name="show_as" position="replace"/>
 	        </field>
 	    </record>
 
@@ -215,7 +235,8 @@
 	    <delete model="ir.values" search="[('name','=','crm_partner2opportunity')]"/>
 	    <delete model="ir.values" search="[('name','=','act_res_partner_event')]"/>
 	    <delete model="ir.values" search="[('name','=','act_res_partner_emails')]"/>
-	    <report id="res_partner_address_report" model="res.partner" name="res.partner.address" string="Labels" xml="base/res/report/partner_address.xml" xsl="base/res/report/partner_address.xsl" groups="maquipal.grupo_maquipal_visor"/>
+	    <delete model="ir.values" search="[('name','=','crm_case_categ_phone_create_partner')]"/>
+	    <!-- <report id="res_partner_address_report" model="res.partner" name="res.partner.address" string="Labels" xml="base/res/report/partner_address.xml" xsl="base/res/report/partner_address.xsl" groups="maquipal.grupo_maquipal_visor"/> -->
 
 	</data>
 </openerp>

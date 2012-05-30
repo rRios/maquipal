@@ -2,11 +2,30 @@
 <openerp>
 	<data>
 
+		<record id="view_calendario_inherit_tree" model="ir.ui.view">
+			<field name="name">crm.meeting.inherit</field>
+			<field name="model">crm.meeting</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="crm.crm_case_tree_view_meet"/>
+			<field name="arch" type="xml">
+                <tree string="Meetings" position="replace">
+                	<tree string="Meetings">
+                		<field name="partner_id" string="Cliente" />
+						<field name="name" string="Asunto"/>
+						<field name="tipo" string="Tipo"/>
+						<field name="date" string="Fecha"/>
+                	</tree>
+                </tree>
+			</field>
+		</record>
+
 		<record model="ir.actions.act_window" id="action_listado_calendario">
 			<field name="name">Listado Calendario</field>
+			<!-- <field name="res_model">crm.meeting</field> -->
 			<field name="res_model">crm.meeting</field>
 			<field name="domain">[('user_id','=',uid)]</field>
-			<field name="view_id" ref="crm.crm_case_tree_view_meet"/>
+			<!-- <field name="view_id" ref="crm.crm_case_tree_view_meet"/> -->
+			<field name="view_id" ref="maquipal.view_calendario_inherit_tree"/>
 		</record>
 
 		<record id="board_maquipal_form" model="ir.ui.view">

@@ -15,6 +15,30 @@
                         <field name="modelo"/>
                         <field name="serie"/>
                         <field name="cliente_id"/>
+                        <newline/>
+                        <group expand="0" string="Busqueda Avanzada">
+                            <field name="mod_motor"/>
+                            <field name="serie_motor"/>
+                            <field name="mod_convertidor"/>
+                            <field name="serie_convertidor"/>
+                            <newline/>
+                            <field name="f_combustible"/>
+                            <field name="f_aceite"/>
+                            <field name="f_aire_ext"/>
+                            <field name="f_aire_int"/>
+                            <field name="f_hidraulico"/>
+                            <field name="f_convertidor"/>
+                            <newline/>
+                            <field name="t_dientes"/>
+                            <field name="correa_alter"/>
+                            <field name="correa_venti"/>
+                            <field name="alternador"/>
+                            <newline/>
+                            <field name="m_arranque"/>
+                            <field name="ruedas"/>
+                            <field name="mastil"/>
+                            <field name="bateria"/>
+                        </group>
                     </search>
                 </search>
             </field>

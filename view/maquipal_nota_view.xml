@@ -12,14 +12,20 @@
 	                    string="Activas"
 	                    name="activas" help="Activas"
 	                    domain="[('estado','!=','cerrado')]"/>
-	                <filter icon="terp-check"
+	                <!-- <filter icon="terp-check"
 	                    string="Pedidos"
 	                    name="pedidos" help="Pedidos"
-	                    domain="[('tipo','=','pedido')]"/>
+	                    domain="[('tipo','=','pedido')]"/> -->
+	                <!-- <filter icon="terp-check"
+	                    string="Pedidos"
+	                    name="pedidos" help="Pedidos"
+	                    domain="[('tipo','=','pedido')]"
+	                    context="{'group_by':'estado'}"/>
 	                <filter icon="terp-check"
 	                    string="Consultas"
 	                    name="consultas" help="Consultas"
-	                    domain="[('tipo','=','consulta')]"/>
+	                    domain="[('tipo','=','consulta')]"
+	                    context="{'group_by':'estado'}"/> -->
 	                <newline/>
                 	<field name="tema"/>
                     <field name="cliente_id"/>
@@ -27,7 +33,7 @@
                     <field name="modelo"/>
                     <field name="serie"/>
                     <field name="fecha_inicio"/>
-                    <!-- <field name="tipo"/> -->
+                    <field name="tipo"/>
                     <field name="owner" string="Encargado"/>
                 </search>
             </field>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report id="report_maquipal_cliente" model="res.partner" name="res.partner"
+                rml="maquipal/report/maquipal_cliente_report.rml" string="Imprimir listado"
+                usage="default"/>
+
+    </data>
+</openerp>

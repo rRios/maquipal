@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="57.0" y1="57.0" width="481" height="728"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P2" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P3" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_8" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_9" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <images/>
+  </stylesheet>
+  <story>
+    <para style="P2">[[repeatIn(objects,'o')]]</para>
+    <para style="P2">[[ setLang(o.partner_id.lang) ]]</para>
+    <blockTable colWidths="237.0,46.0,201.0" style="Table1">
+      <tr>
+        <td>
+          <para style="P3">Shipping address :</para>
+          <para style="P1">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
+          <para style="P1">[[ (o.partner_shipping_id and o.partner_shipping_id.street) or '' ]]</para>
+          <para style="P1">[[ (o.partner_shipping_id and o.partner_shipping_id.street2) or removeParentNode('para') ]]</para>
+          <para style="P1">[[ (o.partner_shipping_id and o.partner_shipping_id.zip) or '' ]] [[ (o.partner_shipping_id and o.partner_shipping_id.city) or '' ]]</para>
+          <para style="P1">[[ (o.partner_shipping_id and o.partner_shipping_id.state_id and o.partner_shipping_id.state_id.name) or removeParentNode('para') ]] </para>
+          <para style="P1">[[ (o.partner_shipping_id and o.partner_shipping_id.country_id and o.partner_shipping_id.country_id.name) or '' ]]</para>
+          <para style="P1">
+            <font color="white"> </font>
+          </para>
+          <para style="P3">Invoice address :</para>
+          <para style="P1">[[ (o.partner_invoice_id and o.partner_invoice_id.title and o.partner_invoice_id.title.name) or '' ]] [[ (o.partner_invoice_id and o.partner_invoice_id.name) or '' ]]</para>
+          <para style="P1">[[ (o.partner_invoice_id and o.partner_invoice_id.street) or '' ]] </para>
+          <para style="P1">[[ (o.partner_invoice_id and o.partner_invoice_id.street2) or removeParentNode('para') ]]</para>
+          <para style="P1">[[ (o.partner_invoice_id and o.partner_invoice_id.zip) or '' ]] [[ (o.partner_invoice_id and o.partner_invoice_id.city) or '' ]]</para>
+          <para style="P1">[[ (o.partner_invoice_id and o.partner_invoice_id.state_id and o.partner_invoice_id.state_id.name) or removeParentNode('para') ]]</para>
+          <para style="P1">[[ (o.partner_invoice_id and o.partner_invoice_id.country_id and o.partner_invoice_id.country_id.name) or '' ]]</para>
+        </td>
+        <td>
+          <para style="P2">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P1">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
+          <para style="P1">[[ (o.partner_order_id and o.partner_order_id.street) or '' ]]</para>
+          <para style="P1">[[ (o.partner_order_id and o.partner_order_id.street2) or removeParentNode('para') ]]</para>
+          <para style="P1">[[ (o.partner_order_id and o.partner_order_id.zip) or '' ]] [[ (o.partner_order_id and o.partner_order_id.city) or '' ]]</para>
+          <para style="P1">[[ (o.partner_order_id and o.partner_order_id.state_id and o.partner_order_id.state_id.name) or removeParentNode('para')]] [[ (o.partner_order_id and o.partner_order_id.country_id and o.partner_order_id.country_id.name) or '' ]]</para>
+          <para style="P1">
+            <font color="white"> </font>
+          </para>
+          <para style="P1">Tel. : [[ (o.partner_order_id and o.partner_order_id.phone) or removeParentNode('para') ]]</para>
+          <para style="P1">Fax : [[ (o.partner_order_id and o.partner_order_id.fax) or removeParentNode('para') ]]</para>
+          <para style="P1">TVA : [[ (o.partner_id and o.partner_id.vat) or removeParentNode('para') ]]</para>
+          <para style="P1">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P2">
+      <font face="Helvetica"/>
+    </para>
+  </story>
+</document>
+
+

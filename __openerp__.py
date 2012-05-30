@@ -25,6 +25,7 @@
         'view/maquipal_maquina_view.xml',
         'view/maquipal_nota_view.xml',
         'board_maquipal_view.xml',
+        'maquipal_report.xml',
     ],
     'demo_xml': [],
     'test': [
