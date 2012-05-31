@@ -187,19 +187,19 @@
 
 		<!-- Cliente Action -->
 		<record model="ir.actions.act_window" id="action_cliente_form">
-			<field name="name">res.partner</field>
+			<field name="name">Cliente</field>
 			<field name="res_model">res.partner</field>
 		</record>
 		<menuitem name="Maquipal" icon="terp-project" id="menu_maquipal" />
 		<menuitem name="Clientes" parent="menu_maquipal" id="menu_maquipal_lista" action="action_cliente_form" />
 
 		<record model="ir.actions.act_window" id="action_calendario">
-			<field name="name">crm.meeting</field>
+			<field name="name">Calendario</field>
 			<field name="res_model">crm.meeting</field>
 			<field name="view_mode">calendar,tree,form,gantt</field>
 		</record>
 		<record model="ir.actions.act_window" id="action_calendario_lista">
-			<field name="name">crm.meeting</field>
+			<field name="name">Calendario</field>
 			<field name="res_model">crm.meeting</field>
 			<field name="view_type">tree</field>
 		</record>

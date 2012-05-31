@@ -204,13 +204,13 @@
 
 		<!-- Nota Action -->
 		<record model="ir.actions.act_window" id="action_nota_form">
-			<field name="name">maquipal.nota</field>
+			<field name="name">Nota</field>
 			<field name="res_model">maquipal.nota</field>
 			<field name="view_id" ref="view_nota_tree"/>
 			<field name="context">{'search_default_activas':1, 'search_default_owner':uid}</field>
 		</record>
 		<record model="ir.actions.act_window" id="action_listado_simple">
-			<field name="name">maquipal.nota</field>
+			<field name="name">Nota</field>
 			<field name="res_model">maquipal.nota</field>
 			<field name="domain">[('owner','=',uid),('estado','!=','cerrado')]</field>
 			<field name="view_id" ref="view_listado_notas_simple"/>

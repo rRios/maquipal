@@ -149,7 +149,7 @@
 
 		<!-- Maquina Action -->
 		<record model="ir.actions.act_window" id="action_maquina_form">
-			<field name="name">product.product</field>
+			<field name="name">Maquina</field>
 			<field name="res_model">product.product</field>
 		</record>
 		<menuitem name="Maquinas" parent="menu_maquipal" id="menu_maquipal_maquinas" action="action_maquina_form" />
