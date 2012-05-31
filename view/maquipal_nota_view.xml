@@ -175,8 +175,9 @@
 					<field name="maquina" />
 					<field name="tipo"/>
 					<field name="estado" string="Estado"/>
-					<field name="owner" string="Encargado"/>
+					<field name="vendido_llegada"/>
 					<field name="resultado"/>
+					<field name="vendido_transportista"/>
 				</tree>
 			</field>
 		</record>
@@ -194,8 +195,9 @@
 					<field name="maquina" />
 					<field name="tipo"/>
 					<field name="estado" string="Estado"/>
-					<field name="owner" string="Encargado"/>
+					<field name="vendido_llegada"/>
 					<field name="resultado"/>
+					<field name="vendido_transportista"/>
 				</tree>
 			</field>
 		</record>
