@@ -50,7 +50,8 @@
 						<group colspan="2" col="2"> 
 							<field name="tema"/>
 							<field name="tipo"/>
-							<field name="estado" string="Estado"/>
+							<field name="estado" on_change="copiar_estado(estado)" attrs="{'invisible':[('estado','!=','cerrado')]}"/>
+							<field name="estado_visto" on_change="copiar_estado_visto(estado_visto)" attrs="{'invisible':[('estado','=','cerrado')]}"/>
 						</group>
 						<group colspan="2" col="2">
 							<field name="fecha_inicio"/>

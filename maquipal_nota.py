@@ -22,6 +22,22 @@ AVAILABLE_STATES = [
     ('cerrado', 'Cerrado'),
 ]
 
+AVAILABLE_STATES_SELECCION = [
+    ('no_comenzado', 'No Comenzado'),
+    ('urgente', 'Urgente'),
+    ('pte_proveedor', 'Pte. Proveedor'),
+    ('llamar', 'Llamar'),
+    ('en_curso', 'En Curso'),
+    ('pte_cliente', 'Pte. Cliente'),
+    ('pte_stock', 'Pte. Stock'),
+    ('ofertado', 'Ofertado'),
+    ('retrasado', 'Retrasado'),
+    ('incompleto', 'Incompleto'),
+    ('avisado', 'Avisado'),
+    ('recogen', 'Recogen'),
+    ('recepcionado', 'Recepcionado'),
+]
+
 class maquipal_nota(osv.osv):
     def onchange_partner_id(self, cr, uid, ids, part, email=False):
         """This function returns value of partner address based on partner
@@ -85,6 +101,31 @@ class maquipal_nota(osv.osv):
             return False
         return uid
 
+    def copiar_estado_visto(self, cr, uid, ids, est_visto, context=None):
+        """Copia el estado_visto en estado. estado_visto sirve para ocultar el estado cerrado del desplegable
+        @param self: the object pointer
+        @param cr: the current row, from the database cursor
+        @param uid: the current user's ID for security checks
+        @param ids: list of case IDs
+        @param est_visto: estado_visto (igual que estado, pero sin cerrado)
+        """
+        if not est_visto:
+            return {'value': {}}
+        return {'value': {'estado': est_visto}}
+
+    def copiar_estado(self, cr, uid, ids, est, context=None):
+        """Copia el estado en estado_visto. por si se vuelve de cerrado
+        @param self: the object pointer
+        @param cr: the current row, from the database cursor
+        @param uid: the current user's ID for security checks
+        @param ids: list of case IDs
+        @param est: estado
+        """
+        if not est:
+            return {'value': {}}
+        return {'value': {'estado_visto': est}}
+
+
     _name = 'maquipal.nota'
     _description = 'Nota'
     _rec_name = 'fecha_inicio'
@@ -105,6 +146,7 @@ class maquipal_nota(osv.osv):
         'avisos': fields.text('Avisos'),
         'owner': fields.many2one('res.users', 'Destinatario', readonly=True),
         'estado': fields.selection(AVAILABLE_STATES, 'Estado', select=True),
+        'estado_visto': fields.selection(AVAILABLE_STATES_SELECCION, 'Estado'),
         'historico': fields.one2many('maquipal.envio', 'nota_id', 'Historico'),
         'resultado': fields.selection([
                     ('vendido', 'Vendido'),
@@ -131,6 +173,7 @@ class maquipal_nota(osv.osv):
         #'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),
         'fecha_inicio': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
         'estado': 'no_comenzado',
+        'estado_visto': 'no_comenzado',
         'owner': _get_default_user,
     }
 

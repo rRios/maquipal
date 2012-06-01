@@ -87,6 +87,7 @@ class maquipal_envio(osv.osv_memory):
         vals = {
             'owner': envio[0].usuario_destino.id,
             'estado': elestado,
+            'estado_visto': elestado,
         }
 
         nota[0].write(vals, context=context)
