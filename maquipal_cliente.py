@@ -83,6 +83,7 @@ class res_partner(osv.osv):
             new_nota = nota_obj.create(cr, uid, {
                     'cliente_id': this.id,
                     'phone': this.phone,
+                    'mobile': this.mobile,
                     'contacto': this.address[0].name,
                     'avisos': campo_avisos,
             }, context=context)

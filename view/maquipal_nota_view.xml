@@ -83,6 +83,7 @@
 									<separator string="Cliente" colspan="2" />
 									<field name="cliente_id" string="Cliente" on_change="onchange_partner_id(cliente_id, phone)"/>
 									<field name="phone" string="Telefono" />
+									<field name="mobile" string="Movil" />
 									<field name="contacto" string="Contacto" />
 								</group>
 								<group colspan="2" col="2">
@@ -172,6 +173,7 @@
 					<field name="tema"/>
 					<field name="cliente_id" />
 					<field name="phone" />
+					<field name="mobile" />
 					<field name="maquina" />
 					<field name="tipo"/>
 					<field name="estado" string="Estado"/>
@@ -192,6 +194,7 @@
 					<field name="tema"/>
 					<field name="cliente_id" />
 					<field name="phone" />
+					<field name="mobile" />
 					<field name="maquina" />
 					<field name="tipo"/>
 					<field name="estado" string="Estado"/>

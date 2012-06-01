@@ -59,7 +59,7 @@ class maquipal_nota(osv.osv):
         address = self.pool.get('res.partner.address').browse(cr, uid, add)
         #pdb.set_trace()
         #return {'value': {'email_from': address.email, 'phone': address.phone, 'contacto': address.name}}
-        return {'value': {'phone': address.phone, 'contacto': address.name}}
+        return {'value': {'phone': address.phone, 'contacto': address.name, 'mobile': address.mobile}}
 
     def onchange_maquina_id(self, cr, uid, ids, maq):
         """This function returns value of modelo and serie based on maquina id
@@ -91,6 +91,7 @@ class maquipal_nota(osv.osv):
     _columns = {
         'cliente_id': fields.many2one('res.partner', 'Cliente', select=True),
         'phone': fields.char('Telefono', size=64),
+        'mobile': fields.char('Movil', size=64),
         'contacto': fields.char('Contacto', size=64),
         'maquina': fields.many2one('product.product', 'Maquina', select=True),
         'modelo': fields.char('Modelo', size=64, select=True),
