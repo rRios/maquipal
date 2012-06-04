@@ -126,6 +126,7 @@ class maquipal_nota(osv.osv):
         return {'value': {'estado_visto': est}}
 
 
+
     _name = 'maquipal.nota'
     _description = 'Nota'
     _rec_name = 'fecha_inicio'
@@ -214,6 +215,7 @@ class maquipal_nota(osv.osv):
             context = {}
         context.update({'active_ids': ids})
 
+
         data_obj = self.pool.get('ir.model.data')
         data_id = data_obj._get_id(cr, uid, 'maquipal', 'view_maquipal_cerrar_nota')
         value = {}
@@ -238,97 +240,7 @@ class maquipal_nota(osv.osv):
                 'nodestroy': True
         }
 
+
         return value
-
-    # def action_no_comenzado(self, cr, uid, ids, context=None):
-    #     """Pasa a no comenzado
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'no_comenzado'})
-    #     return True
-
-    # def action_pte_proveedor(self, cr, uid, ids, context=None):
-    #     """Pasa a pte proveedor
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'pte_proveedor'})
-    #     return True
-
-    # def action_llamar(self, cr, uid, ids, context=None):
-    #     """Pasa a llamar
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'llamar'})
-    #     return True
-
-    # def action_en_curso(self, cr, uid, ids, context=None):
-    #     """Pasa a en curso
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'en_curso'})
-    #     return True
-
-    # def action_pte_cliente(self, cr, uid, ids, context=None):
-    #     """Pasa a pte cliente
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'pte_cliente'})
-    #     return True
-
-    # def action_ofertado(self, cr, uid, ids, context=None):
-    #     """Pasa a ofertado
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'ofertado'})
-    #     return True
-
-    # def action_retrasado(self, cr, uid, ids, context=None):
-    #     """Pasa a retrasado
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'retrasado'})
-    #     return True
-
-    # def action_terminado(self, cr, uid, ids, context=None):
-    #     """Pasa a terminado
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'terminado'})
-    #     return True
-
-    # def action_entregado(self, cr, uid, ids, context=None):
-    #     """Pasa a entregado
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'entregado'})
-    #     return True
-
-    # def action_avisado(self, cr, uid, ids, context=None):
-    #     """Pasa a avisado
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'avisado'})
-    #     return True
-
-    # def action_recogen(self, cr, uid, ids, context=None):
-    #     """Pasa a recogen
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'recogen'})
-    #     return True
-
-    # def action_recepcionado(self, cr, uid, ids, context=None):
-    #     """Pasa a recepcionado
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'recepcionado'})
-    #     return True
-
-    # def action_urgente(self, cr, uid, ids, context=None):
-    #     """Pasa a urgente
-    #     """
-    #     self.write(cr, uid, ids, {'estado': 'urgente'})
-    #     return True
-
-    # def action_inicio(self, cr, uid, ids, context=None):
-    #     """Pasa al estado inicial
-    #     """
-    #     #pdb.set_trace()
-    #     self.write(cr, uid, ids, {'state': 'inicio'})
-    #     return True
-
-    # def action_final(self, cr, uid, ids, context=None):
-    #     """Pasa al estado final
-    #     """
-    #     self.write(cr, uid, ids, {'state': 'final'})
-    #     return True
 
 maquipal_nota()

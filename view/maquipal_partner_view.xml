@@ -92,7 +92,7 @@
                         </page>
                        
 
-                        <page string="Avisos">
+                        <page string="Comentarios">
                             <field colspan="4" name="comment" nolabel="1"/>
                         </page>
                         <!-- <page string="Visitas">

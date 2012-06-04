@@ -44,6 +44,7 @@
 			<field name="name">maquipal.nota.form</field>
 			<field name="model">maquipal.nota</field>
 			<field name="type">form</field>
+			<field name="priority" eval="1"/>
 			<field name="arch" type="xml">
 				<form string="Notas">
 					<group colspan="6" col="6">
@@ -69,13 +70,7 @@
 		                         help="Cerrar Nota" icon="gtk-go-forward"
 		                         type="object"/>
 						</group>
-						<!-- <group colspan="2" col="2">
-									<<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>
-									<button name="action_gestion" string="Pasar a gestion" states="borrador,comercial,almacen" type="object" icon="gtk-apply"/>
-									<button name="action_comercial" string="Pasar a comercial" states="gestion" type="object" icon="gtk-apply"/>
-									<button name="action_almacen" string="Pasar a almacen" states="gestion" type="object" icon="gtk-apply"/>
-									<button name="action_final" string="Pasar a final" states="gestion,comercial,almacen" type="object" icon="gtk-apply"/>
-				                </group> -->
+
 					</group>
 					<notebook colspan="4">
 						<page string="General">
@@ -93,15 +88,7 @@
 									<field name="modelo" string="Modelo" />
 									<field name="serie" string="Serie" />
 								</group>
-								<!-- <group colspan="2" col="2">
-									<separator string="Acciones" colspan="2" />
-									<field name="state" string="Departamento"/>
-									<button name="action_borrador" string="Pasar a borrador" states="gestion" type="object" icon="gtk-apply"/>
-									<button name="action_gestion" string="Pasar a gestion" states="borrador,comercial,almacen" type="object" icon="gtk-apply"/>
-									<button name="action_comercial" string="Pasar a comercial" states="gestion" type="object" icon="gtk-apply"/>
-									<button name="action_almacen" string="Pasar a almacen" states="gestion" type="object" icon="gtk-apply"/>
-									<button name="action_final" string="Pasar a final" states="gestion,comercial,almacen" type="object" icon="gtk-apply"/>
-				                </group> -->
+
 							</group>
 							<!-- <field name="tema" /> -->
 							<!-- <field name="fecha_inicio" /> -->
@@ -157,9 +144,9 @@
 		<!-- <record id="view_nota_form2" model="ir.ui.view">
 			<field name="name">maquipal.nota.form2</field>
 			<field name="model">maquipal.nota</field>
-			<field name="type">form</field>
+			<field name="inherit_id" ref="maquipal.view_nota_form"/>
 			<field name="arch" type="xml">
-				<button name="enviar_a" position="replace"/>
+				<button name="cerrar_nota" position="replace"/>
 			</field>
 		</record> -->
 

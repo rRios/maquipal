@@ -19,7 +19,8 @@ class maquipal_cerrar_nota(osv.osv_memory):
 		""" Obtiene perdido_motivo """
 		notas = self.pool.get('maquipal.nota')
 		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
+		#lanota = notas.browse(cr, uid, ids, context=context)
+		#pdb.set_trace()
 		return lanota.perdido_motivo
 
 	def _get_default_perdido_explicacion(self, cr, uid, ids, context=None):
@@ -154,9 +155,19 @@ class maquipal_cerrar_nota(osv.osv_memory):
 			'fecha_final': fecha_final,
 			'estado': 'cerrado',
 		}
-		nota.write(vals, context=context)
 
-		#pdb.set_trace()
+		# if not this[0].resultado:
+		# 	raise osv.except_osv(('Error'),('Ha de especificar un Resultado'))
+		# # elif this[0].resultado == 'perdido' and not this[0].perdido_motivo:
+		# # 	raise osv.except_osv(('Error'),('Ha de especificar el motivo de la perdida'))
+		# else:
+
+		# 	nota.write(vals, context=context)
+
+		# #pdb.set_trace()
+		# 	return {'type': 'ir.actions.act_window_close'}
+
+		nota.write(vals, context=context)
 		return {'type': 'ir.actions.act_window_close'}
 
 maquipal_cerrar_nota()
