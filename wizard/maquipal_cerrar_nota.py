@@ -152,6 +152,12 @@ class maquipal_cerrar_nota(osv.osv_memory):
 		fecha_final = time.strftime('%Y-%m-%d %H:%M:%S')
 
 		#pdb.set_trace()
+		if not this[0].resultado:
+			#return {'value': {}, 'warning': {'title': 'Aviso', 'message': 'Debe especificar un resultado'}}
+			raise osv.except_osv(('AVISO'),('Debe especificar un resultado'))
+
+		if this[0].resultado == 'perdido' and not this[0].perdido_motivo:
+			raise osv.except_osv(('AVISO'),('Debe especificar el motivo de la perdida'))
 
 		vals = {
 			'resultado': this[0].resultado,
