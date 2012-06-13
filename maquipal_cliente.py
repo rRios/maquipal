@@ -39,7 +39,7 @@ class res_partner(osv.osv):
         'maquinas': fields.one2many('product.product', 'cliente_id', 'Maquinas'),
         'visitas': fields.one2many('crm.meeting', 'partner_id', 'Visitas'),
         'aviso': fields.char('Aviso', size=140),
-
+        'notas': fields.one2many('maquipal.nota', 'cliente_id', 'Notas Asociadas'),
     } 
     _defaults = {
 

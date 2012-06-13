@@ -3,6 +3,15 @@
 from osv import fields, osv
 import pdb
 
+# class tipo_maquina(osv.osv):
+#     _name = 'maquipal.tipo.maquina'
+#     _description = 'Tipos de maquinas'
+#     _columns = {
+#         'name': fields.char('Nombre', size=64),
+#     }
+
+# tipo_maquina()
+
 class product_product(osv.osv):
     def onchange_cliente_id(self, cr, uid, ids, c_id):
         """This function returns value of default_code based on cliente_id
@@ -46,6 +55,7 @@ class product_product(osv.osv):
         'mastil': fields.char('Mastil', size=64),
         'bateria': fields.char('Bateria', size=64),
         'comentarios': fields.text('Comentarios'),
+        #'tipo': fields.many2one('maquipal.tipo.maquina', 'Tipo', select=True),
     }
 
     def crear_nota_desde_maquina(self, cr, uid, ids, context=None):

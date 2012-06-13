@@ -75,6 +75,7 @@
                         <separator string="Codes" colspan="2"/>
                         <field name="modelo"/>
                         <field name="serie"/>
+                        <!-- <field name="tipo"/> -->
                     </group>
                     <group colspan="1" col="1">
                         <field name="product_image" widget='image' nolabel="1"/>

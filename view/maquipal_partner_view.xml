@@ -129,6 +129,18 @@
 								</tree>
 							</field>
 						</page>
+						<page string="Notas Asociadas">
+							<field name="notas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
+								<tree string="Notas" colors="red:estado=='no_comenzado';blue:estado=='urgente';gray:estado=='cerrado'">
+									<field name="fecha_inicio" string="Fecha Inicio" />
+									<field name="tema" string="Tema"/>
+									<field name="maquina" string="Maquina"/>
+									<field name="estado" string="Estado"/>
+									<field name="resultado" string="Resultado"/>
+									<!-- <field name="description"/> -->
+								</tree>
+							</field>
+						</page>
                     </notebook>
                 </form>
 
