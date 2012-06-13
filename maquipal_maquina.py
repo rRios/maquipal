@@ -4,6 +4,21 @@ from osv import fields, osv
 import pdb
 
 class product_product(osv.osv):
+    def onchange_cliente_id(self, cr, uid, ids, c_id):
+        """This function returns value of default_code based on cliente_id
+        @param self: the object pointer
+        @param cr: the current row, from the database cursor
+        @param uid: the current user's ID for security checks
+        @param ids: list of case IDs
+        @param c_id Id of cliente
+        """
+        if not c_id:
+            return {'value': {}}
+
+        cliente = self.pool.get('res.partner').browse(cr, uid, c_id)
+        #pdb.set_trace()
+        return {'value': {'default_code': cliente.name}}
+
     _name = 'product.product'
     _description = 'Maquina'
     _inherit = 'product.product'

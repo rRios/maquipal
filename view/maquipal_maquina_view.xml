@@ -58,12 +58,18 @@
                 <page groups="base.group_extended" string="Packaging" position="replace"/>
                 <group colspan="4" col="8" position="replace"/>
 				<form string="Product">
+                    <!-- <group colspan="6">
+                        <field name="name"/>
+                        <field name="marca"/>
+                        <field name="modelo"/>
+                    </group> -->
                    <group colspan="4" col="8">
                     <group colspan="4" col="2">
                         <separator string="Name" colspan="2"/>
                         <field name="name"/>
                         <field name="marca"/>
-                        <field name="cliente_id"/>
+                        <field name="cliente_id" on_change="onchange_cliente_id(cliente_id)"/>
+                        <field name="default_code" invisible="True"/>
                     </group>
                     <group colspan="2" col="2">
                         <separator string="Codes" colspan="2"/>
