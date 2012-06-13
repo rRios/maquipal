@@ -47,7 +47,12 @@
 			<field name="priority" eval="1"/>
 			<field name="arch" type="xml">
 				<form string="Notas">
+					<group colspan="5" attrs="{'invisible':[('aviso','=',False)]}">
+						<label string="AVISO CLIENTE: " />
+						<field name='aviso' nolabel="1" colspan="4"/>
+					</group>
 					<group colspan="6" col="6">
+
 						<group colspan="2" col="2"> 
 							<field name="tema"/>
 							<field name="tipo"/>
@@ -93,9 +98,10 @@
 							<!-- <field name="tema" /> -->
 							<!-- <field name="fecha_inicio" /> -->
 							<separator string="Datos" colspan="4" />
-							<field name="datos" nolabel="1" colspan="4"/>
-							<separator string="Avisos" colspan="4" />
-							<field name="avisos" nolabel="1" />
+							<!-- <field name="datos" nolabel="1" colspan="4" on_change="onchange_datos(datos)" /> -->
+							<field name="datos" nolabel="1" colspan="4" />
+							<separator string="Comentarios" colspan="4" />
+							<field name="comentarios" nolabel="1" />
 							<!-- <field name="tipo"/> -->
 						</page>
 						<!-- <page string="Avisos">

@@ -93,7 +93,8 @@
                        
 
                         <page string="Comentarios">
-                            <field colspan="4" name="comment" nolabel="1"/>
+                        	<field colspan="4" name="aviso"/>
+                            <field colspan="4" name="comment" string="Comentarios"/>
                         </page>
                         <!-- <page string="Visitas">
 							<field name="ultima_visita" string="Ultima Visita"/>

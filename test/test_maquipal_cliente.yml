@@ -112,4 +112,4 @@
         assert lanota.cliente_id.name == "Cliente 1"
         assert lanota.phone == "+34 555666999"
         assert lanota.contacto == "Contacto Cliente 1"
-        assert lanota.avisos == "Riesgo: Riesgo Cliente 1"+"\n\n"+"Comentarios Cliente 1"
+        assert lanota.comentarios == "Riesgo: Riesgo Cliente 1"+"\n\n"+"Comentarios Cliente 1"

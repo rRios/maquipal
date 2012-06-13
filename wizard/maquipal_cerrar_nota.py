@@ -11,73 +11,81 @@ class maquipal_cerrar_nota(osv.osv_memory):
 	def _get_default_resultado(self, cr, uid, ids, context=None):
 		""" Obtiene el resultado """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
-		return lanota.resultado
+		# lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		# return lanota.resultado
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].resultado
 
 	def _get_default_perdido_motivo(self, cr, uid, ids, context=None):
 		""" Obtiene perdido_motivo """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-		#lanota = notas.browse(cr, uid, ids, context=context)
-		#pdb.set_trace()
-		return lanota.perdido_motivo
+		#lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].perdido_motivo
 
 	def _get_default_perdido_explicacion(self, cr, uid, ids, context=None):
 		""" Obtiene perdido_explicacion """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
-		return lanota.perdido_explicacion
+		# lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		# return lanota.perdido_explicacion
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].perdido_explicacion
 
 	def _get_default_vendido_llegada(self, cr, uid, ids, context=None):
 		""" Obtiene vendido_llegada """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
-		return lanota.vendido_llegada
+		# lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		# return lanota.vendido_llegada
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].vendido_llegada
 
 	def _get_default_vendido_entrega(self, cr, uid, ids, context=None):
 		""" Obtiene vendido_entrega """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
-		return lanota.vendido_entrega
+		# lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		# return lanota.vendido_entrega
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].vendido_entrega
 
 	def _get_default_vendido_transportista(self, cr, uid, ids, context=None):
 		""" Obtiene vendido_transportista """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
-		return lanota.vendido_transportista
+		# lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		# return lanota.vendido_transportista
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].vendido_transportista
 
 	def _get_default_vendido_portes(self, cr, uid, ids, context=None):
 		""" Obtiene vendido_portes """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
-		return lanota.vendido_portes
+		# lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		# return lanota.vendido_portes
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].vendido_portes
 
 	def _get_default_vendido_proveedor(self, cr, uid, ids, context=None):
 		""" Obtiene vendido_proveedor """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
-		return lanota.vendido_proveedor
+		# lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		# return lanota.vendido_proveedor
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].vendido_proveedor
 
 	def _get_default_vendido_cobrar_portes(self, cr, uid, ids, context=None):
 		""" Obtiene vendido_cobrar_portes """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
-		return lanota.vendido_cobrar_portes
+		# lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		# return lanota.vendido_cobrar_portes
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].vendido_cobrar_portes
 
 	def _get_default_vendido_explicacion(self, cr, uid, ids, context=None):
 		""" Obtiene vendido_explicacion """
 		notas = self.pool.get('maquipal.nota')
-		lanota = notas.browse(cr, uid, ids['active_id'], context=context)
-
-		return lanota.vendido_explicacion
+		# lanota = notas.browse(cr, uid, ids['active_id'], context=context)
+		# return lanota.vendido_explicacion
+		lanota = notas.browse(cr, uid, ids['active_ids'], context=context)
+		return lanota[0].vendido_explicacion
 
 	_name = 'maquipal.cerrar.nota'
 	_descrption = 'Wizard para cerrar una nota'
@@ -131,15 +139,19 @@ class maquipal_cerrar_nota(osv.osv_memory):
 		""" Guarda los cambios que se hubieran hecho en el resultado
 			y cambia el estado y la fecha final
 		"""
-		record_id = context and context.get('active_id') or False
+		#record_id = context and context.get('active_id') or False
+		record_id = context and context.get('active_ids') or False
 		if not record_id:
 			return {'type': 'ir.actions.act_window_close'}
 
 		notas = self.pool.get('maquipal.nota')
-		nota = notas.browse(cr, uid, record_id, context=context)
+		#nota = notas.browse(cr, uid, record_id, context=context)
+		nota = notas.browse(cr, uid, record_id[0], context=context)
 
 		this = self.browse(cr, uid, ids, context)
 		fecha_final = time.strftime('%Y-%m-%d %H:%M:%S')
+
+		#pdb.set_trace()
 
 		vals = {
 			'resultado': this[0].resultado,

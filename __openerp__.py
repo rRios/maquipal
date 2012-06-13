@@ -28,6 +28,9 @@
         'maquipal_report.xml',
     ],
     'demo_xml': [],
+    'css': [
+        'static/css/estilos.css',
+    ],
     'test': [
             'test/test_maquipal_cliente.yml',
             'test/test_maquipal_maquina.yml',

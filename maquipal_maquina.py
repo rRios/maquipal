@@ -69,14 +69,14 @@ class product_product(osv.osv):
             else:
                 campo_comment = this.cliente_id.comment
 
-            campo_avisos = 'Riesgo: '+campo_riesgo+'\n\n'+campo_comment
+            campo_comentarios = 'Riesgo: '+campo_riesgo+'\n\n'+campo_comment
             
             new_nota = nota_obj.create(cr, uid, {
                     'cliente_id': this.cliente_id.id,
                     'phone': this.cliente_id.phone,
                     'mobile': this.cliente_id.mobile,
                     'contacto': this.cliente_id.address[0].name,
-                    'avisos': campo_avisos,
+                    'comentarios': campo_comentarios,
                     'maquina': this.id,
                     'modelo': this.modelo,
                     'serie': this.serie,

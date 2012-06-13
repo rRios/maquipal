@@ -4,6 +4,7 @@ from osv import fields, osv
 from datetime import datetime
 import time
 import pdb
+import random
 
 AVAILABLE_STATES = [
     ('no_comenzado', 'No Comenzado'),
@@ -59,6 +60,13 @@ class maquipal_nota(osv.osv):
         data = self.onchange_partner_address_id(cr, uid, ids, addr['contact'])['value']
         #data = self.onchange_partner_address_id(cr, uid, ids, addr)['value']
 
+        #
+        #cliente = self.pool.get('res.partner').browse(cr, uid, part)
+        # data['aviso'] = cliente.aviso
+        #pdb.set_trace()
+        # if cliente.aviso:
+        #     raise osv.except_osv(('AVISO'),(cliente.aviso))
+
         return {'value': data}
 
     def onchange_partner_address_id(self, cr, uid, ids, add, email=False):
@@ -73,9 +81,10 @@ class maquipal_nota(osv.osv):
         if not add:
             return {'value': {'email_from': False}}
         address = self.pool.get('res.partner.address').browse(cr, uid, add)
+
         #pdb.set_trace()
         #return {'value': {'email_from': address.email, 'phone': address.phone, 'contacto': address.name}}
-        return {'value': {'phone': address.phone, 'contacto': address.name, 'mobile': address.mobile}}
+        return {'value': {'phone': address.phone, 'contacto': address.name, 'mobile': address.mobile, 'aviso': address.partner_id.aviso}}
 
     def onchange_maquina_id(self, cr, uid, ids, maq):
         """This function returns value of modelo and serie based on maquina id
@@ -99,7 +108,9 @@ class maquipal_nota(osv.osv):
         """
         if context and context.get('portal', False):
             return False
+
         return uid
+
 
     def copiar_estado_visto(self, cr, uid, ids, est_visto, context=None):
         """Copia el estado_visto en estado. estado_visto sirve para ocultar el estado cerrado del desplegable
@@ -111,6 +122,11 @@ class maquipal_nota(osv.osv):
         """
         if not est_visto:
             return {'value': {}}
+
+        # cliente = self.pool.get('res.partner').browse(cr, uid, part)
+        # if cliente.aviso:
+        #     raise osv.except_osv(('AVISO'),(cliente.aviso))
+
         return {'value': {'estado': est_visto}}
 
     def copiar_estado(self, cr, uid, ids, est, context=None):
@@ -123,7 +139,38 @@ class maquipal_nota(osv.osv):
         """
         if not est:
             return {'value': {}}
+
+        # cliente = self.pool.get('res.partner').browse(cr, uid, part)
+        # if cliente.aviso:
+        #     raise osv.except_osv(('AVISO'),(cliente.aviso))
+
         return {'value': {'estado_visto': est}}
+
+    # def onchange_datos(self, cr, uid, ids, datos, context=None):
+    #     if context is None:
+    #         context = {}
+    #     context.update({'active_ids': ids})
+    #     notas = self.browse(cr, uid, ids)
+    #     for nota in notas:
+    #         if nota.cliente_id.aviso:
+    #             return {'value':{}, 'warning': nota.cliente_id.aviso}
+                
+
+
+
+    # def write(self, cr, uid, ids, vals, context=None):
+    #     if context is None:
+    #         context = {}
+    #     context.update({'active_ids': ids})
+    #     notas = self.browse(cr, uid, ids)
+    #     for nota in notas:
+    #         if nota.cliente_id.aviso:
+    #             raise osv.except_osv(('AVISO'),(nota.cliente_id.aviso))
+    #             res = super(nota, self).write(cr, uid, ids, vals, context)
+    #         else:
+    #             res = super(osv.osv, self).write(cr, uid, ids, vals, context=context)
+    #     return res
+
 
 
 
@@ -138,13 +185,15 @@ class maquipal_nota(osv.osv):
         'maquina': fields.many2one('product.product', 'Maquina', select=True),
         'modelo': fields.char('Modelo', size=64, select=True),
         'serie': fields.char('Serie', size=64, select=True),
+        # 'modelo': fields.many2one('product.product', 'Modelo', select=True),
+        # 'serie': fields.many2one('product.product', 'Serie', select=True),
         'fecha_inicio': fields.date('Fecha inicio', readonly=True, select=True),
         'fecha_final': fields.date('Fecha final', readonly=True),
         'fecha_contestacion': fields.date('Fecha contestacion'),
         'tema': fields.char('Tema', size=64, select=True),
         'datos': fields.text('Datos'),
         'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo', select=True),
-        'avisos': fields.text('Avisos'),
+        'comentarios': fields.text('Comentarios'),
         'owner': fields.many2one('res.users', 'Destinatario', readonly=True),
         'estado': fields.selection(AVAILABLE_STATES, 'Estado', select=True),
         'estado_visto': fields.selection(AVAILABLE_STATES_SELECCION, 'Estado'),
@@ -169,6 +218,7 @@ class maquipal_nota(osv.osv):
         'vendido_proveedor': fields.char('Proveedor', size=64),
         'vendido_cobrar_portes': fields.char('Cobrar portes', size=64),
         'vendido_explicacion': fields.text('Comentarios'),
+        'aviso': fields.char('Aviso', size=140),
     }
     _defaults = {
         #'fecha_inicio': lambda *a: time.strftime("%d/%m/%Y"),

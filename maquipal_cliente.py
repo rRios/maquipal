@@ -38,10 +38,15 @@ class res_partner(osv.osv):
         #'comentarios': fields.one2many('maquipal.comentarios.visita','partner_id','Comentarios'),
         'maquinas': fields.one2many('product.product', 'cliente_id', 'Maquinas'),
         'visitas': fields.one2many('crm.meeting', 'partner_id', 'Visitas'),
+        'aviso': fields.char('Aviso', size=140),
+
     } 
     _defaults = {
 
     }
+
+    def onchange_control_alarma(self, cr, uid, ids, control_alarma):
+        return {'warning': {'title': 'AVISO', 'message': 'WEEEE'}}
 
     def crear_nota_desde_cliente(self, cr, uid, ids, context=None):
         """
@@ -50,6 +55,7 @@ class res_partner(osv.osv):
         @param uid: the current user’s ID for security checks,
         @param context: A standard dictionary for contextual values
         """
+
         value = {}
         data = context and context.get('active_ids', []) or []
         nota_obj = self.pool.get('maquipal.nota')
@@ -78,15 +84,34 @@ class res_partner(osv.osv):
             else:
                 campo_comment = this.comment
 
-            campo_avisos = 'Riesgo: '+campo_riesgo+'\n\n'+campo_comment
+            campo_comentarios = 'Riesgo: '+campo_riesgo+'\n\n'+campo_comment
 
             new_nota = nota_obj.create(cr, uid, {
                     'cliente_id': this.id,
                     'phone': this.phone,
                     'mobile': this.mobile,
                     'contacto': this.address[0].name,
-                    'avisos': campo_avisos,
+                    'comentarios': campo_comentarios,
+                    'aviso': this.aviso,
             }, context=context)
+
+
+            # #############################################
+            # warning = {}
+            # cliente = self.pool.get('res.partner').browse(cr, uid, this.id)
+            # if cliente.aviso:
+            #     title = "Aviso"
+            #     message = cliente.aviso
+            #     warning = {
+            #         'title': title,
+            #         'message': message,
+            #     }
+            # result = super(res_partner,self).crear_nota_desde_cliente(cr, uid, ids, context) 
+            # if result.get('warning',False):
+            #     warning['title'] = title and title +' & '+ result['warning']['title'] or result['warning']['title']
+            #     warning['message'] = message and message + ' ' + result['warning']['message'] or result['warning']['message']
+            # #############################################
+
             value = {
                 'name': 'Nueva Nota',
                 'view_type': 'form',
@@ -97,7 +122,9 @@ class res_partner(osv.osv):
                 'target': 'current',
                 'type': 'ir.actions.act_window',
             }
+
         return value
+        #return {'warning':{'title':'warning','message':'Negative margin on this line'}}
 
 
 res_partner()
