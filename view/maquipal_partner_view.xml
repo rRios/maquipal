@@ -30,8 +30,11 @@
 				<form string="Partners" col='1' position="replace">
 					<form string="Partners" col="1">
 						<group col="7" colspan="4">
-							<group col="7" colspan="4">
+							<group colspan="6">
 								<field name="name"/>
+							</group>
+							<group col="7" colspan="4">
+								<!-- <field name="name"/> -->
 								<field name="actividad"/>
 								<field name="riesgo"/>
 								<button name="crear_nota_desde_cliente"
