@@ -63,12 +63,13 @@
 							<field name="fecha_inicio"/>
 							<field name="fecha_final"/>
 							<!-- <field name="fecha_contestacion"/> -->
+							<label string="" colspan="1"/>
 							<button 
 		                    	 name="establecer_fecha"
 								 string="Anotacion Calendario"
 								 icon="gtk-go-forward"
 								 type="object" 
-								 colspan="2"
+								 colspan="1"
 								 />
 							<field name="owner" string="Encargado"/>
 							<button
