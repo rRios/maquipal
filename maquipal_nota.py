@@ -99,6 +99,7 @@ class maquipal_nota(osv.osv):
         maquina = self.pool.get('product.product').browse(cr, uid, maq)
         return {'value': {'modelo': maquina.modelo, 'serie': maquina.serie}}
 
+
     def _get_default_user(self, cr, uid, context=None):
         """Gives current user id
         @param self: The object pointer
@@ -189,8 +190,8 @@ class maquipal_nota(osv.osv):
         # 'serie': fields.many2one('product.product', 'Serie', select=True),
         'fecha_inicio': fields.date('Fecha inicio', readonly=True, select=True),
         'fecha_final': fields.date('Fecha final', readonly=True),
-        'fecha_contestacion': fields.date('Fecha contestacion'),
-        'tema': fields.char('Tema', size=64, select=True),
+        #'fecha_contestacion': fields.date('Fecha contestacion'),
+        'tema': fields.char('Tema', size=64, required=True, select=True),
         'datos': fields.text('Datos'),
         'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo', select=True),
         'comentarios': fields.text('Comentarios'),
@@ -227,6 +228,63 @@ class maquipal_nota(osv.osv):
         'estado_visto': 'no_comenzado',
         'owner': _get_default_user,
     }
+
+    def establecer_fecha(self, cr, uid, ids, context=None):
+        """
+        @param self: The object pointer
+        @param cr: the current row, from the database cursor,
+        @param uid: the current user’s ID for security checks,
+        @param context: A standard dictionary for contextual values
+        """
+
+        value = {}
+        data = context and context.get('active_ids', []) or []
+
+        meeting_obj = self.pool.get('crm.meeting')
+        nota_obj = self.pool.get('maquipal.nota')
+        data_obj = self.pool.get('ir.model.data')
+        
+        #select the view
+        #id2 = data_obj._get_id(cr, uid, 'maquipal', 'crm_case_form_view_meet')
+        id2 = data_obj._get_id(cr, uid, 'maquipal', 'maquipal_anotacion')
+        id3 = data_obj._get_id(cr, uid, 'maquipal', 'view_calendario_inherit_tree')    
+        if id2:
+            id2 = data_obj.browse(cr, uid, id2, context=context).res_id
+        if id3:
+            id3 = data_obj.browse(cr, uid, id3, context=context).res_id 
+
+        #pdb.set_trace()
+
+        for this in self.browse(cr, uid, ids, context=context):
+            #pdb.set_trace()
+            new_meeting = meeting_obj.create(cr, uid, {
+                    'name': this.tema,
+                    'cliente': this.cliente_id.name,
+                    'partner_id': this.cliente_id.id,
+                    'partner_address_id': this.cliente_id.address[0].id,
+                    'email_from': this.cliente_id.address[0].email,
+                    'contacto': this.contacto,
+                    'phone': this.phone,
+                    'mobile': this.mobile,
+                    'nota': this.tema,
+                    'fecha_inicio': this.fecha_inicio,
+                    'datos': this.datos,
+
+            }, context=context)
+
+            value = {
+                'name': 'Nueva Fecha',
+                'view_type': 'form',
+                'view_mode': 'tree,form',
+                'res_model': 'crm.meeting',
+                'res_id' : new_meeting,
+                'views': [(id2, 'form'), (id3, 'tree')],
+                'target': 'current',
+                'type': 'ir.actions.act_window',
+            }
+
+        return value
+
 
     def enviar_a(self, cr, uid, ids, context=None):
         if context is None:

@@ -163,5 +163,6 @@
 
         <delete model="ir.values" search="[('name','=','action_product_price_list')]"/>
 
+
 	</data>
 </openerp>

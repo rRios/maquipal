@@ -9,11 +9,15 @@
 			<field name="inherit_id" ref="crm.crm_case_tree_view_meet"/>
 			<field name="arch" type="xml">
                 <tree string="Meetings" position="replace">
-                	<tree string="Meetings">
+                	<tree colors="red:date_deadline&lt;current_date;blue:date&lt;current_date and date_deadline&gt;current_date;" string="Meetings">
                 		<field name="partner_id" string="Cliente" />
-						<field name="name" string="Asunto"/>
-						<field name="tipo" string="Tipo"/>
-						<field name="date" string="Fecha"/>
+                		<field name="contacto"/>
+                		<field name="phone"/>
+                		<field name="mobile"/>
+						<field name="name" string="Nota"/>
+						<!-- <field name="tipo" string="Tipo"/> -->
+						<field name="date" string="Fecha Inicio"/>
+						<field name="date_deadline" string="Fecha Final"/>
                 	</tree>
                 </tree>
 			</field>
@@ -23,7 +27,7 @@
 			<field name="name">Listado Calendario</field>
 			<!-- <field name="res_model">crm.meeting</field> -->
 			<field name="res_model">crm.meeting</field>
-			<field name="domain">[('user_id','=',uid)]</field>
+			<field name="domain">[('user_id','=',uid),('estado','!=','hecho')]</field>
 			<!-- <field name="view_id" ref="crm.crm_case_tree_view_meet"/> -->
 			<field name="view_id" ref="maquipal.view_calendario_inherit_tree"/>
 		</record>

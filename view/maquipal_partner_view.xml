@@ -118,17 +118,16 @@
 								</tree>
 							</field>
 						</page>
-						<page string="Calendario de Visitas">
+						<!-- <page string="Calendario de Visitas">
 							<field name="visitas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
 								<tree string="Visitas" colors="red:date&lt;current_date;">
 									<field name="partner_id" string="Cliente" />
 									<field name="name" string="Asunto"/>
 									<field name="tipo" string="Tipo"/>
 									<field name="date" string="Fecha"/>
-									<!-- <field name="description"/> -->
 								</tree>
 							</field>
-						</page>
+						</page> -->
 						<page string="Notas Asociadas">
 							<field name="notas" colspan="4" nolabel="1" context="{'default_partner_id': active_id}">
 								<tree string="Notas" colors="red:estado=='no_comenzado';blue:estado=='urgente';gray:estado=='cerrado'">
@@ -223,7 +222,66 @@
 
 
 		<!-- crm.meeting -->
-		<record model="ir.ui.view" id="crm_case_form_view_meet">
+		<record model="ir.ui.view" id="maquipal_anotacion">
+        	<field name="name">Anotacion de fecha para notas</field>
+	        <field name="model">crm.meeting</field>
+	        <field name="priority" eval="15"/>
+	        <field name="type">form</field>
+	        <field name="arch" type="xml">
+	        	<group col="6" colspan="4">
+                    <!-- <field name="name" select="1" string="Nota"
+                           required="1" /> -->
+                    <field name="allday" on_change="onchange_dates(date,False,False,allday)" />
+                    <field name="estado" />
+                    <newline/>
+                    <field name="date" string="Fecha Inicio" required="1"
+                        on_change="onchange_dates(date,duration,False,allday)" />
+                    <field name="duration" widget="float_time"
+                        on_change="onchange_dates(date,duration,False,allday)" string="Duracion"/>
+                    <field name="date_deadline" string="Fecha Final" required="1"
+                        on_change="onchange_dates(date,False,date_deadline)"/>
+                </group>
+                <notebook colspan="4">
+                <page string="Detalle de la Nota">
+                    <group col="6" colspan="4">
+                        <group col="2" colspan="2">
+                            <separator colspan="2" string="Nota"/>
+                            <field name="user_id" />
+                            <!-- <field name="organizer" groups="base.group_extended"/> -->
+                            <field name="nota" />
+                            <field name="fecha_inicio" />
+                            <field name="datos" />
+                            <!-- <field name="section_id" widget="selection"
+                                groups="base.group_extended"/> -->
+                        </group><group col="2" colspan="2">
+                            <separator colspan="2" string="Contacto"/>
+                            <field name="partner_id" string="Cliente"
+                                on_change="onchange_partner_id(partner_id)" />
+                            <field name="partner_address_id"
+                                string="Contacto"
+                                on_change="onchange_partner_address_id(partner_address_id, email_from)" />
+                            <field name="email_from"/>
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                        </group>
+                    </group>
+                    <separator string="Comentarios" colspan="4" />
+                    <field name="description" nolabel="1" colspan="4" />
+                    <separator colspan="4"/>
+                    <group col="8" colspan="4" groups="base.group_extended">
+                        <field name="state" invisible="1" />
+                    </group>
+                    </page>
+                </notebook>
+	        </field>
+	    </record>
+
+
+
+
+
+
+		<!-- <record model="ir.ui.view" id="crm_case_form_view_meet">
         	<field name="name">CRM - Meetings Form</field>
 	        <field name="model">crm.meeting</field>
 	        <field name="type">form</field>
@@ -236,15 +294,19 @@
 	        	<page string="Recurrency Option" position="replace"/>
 	        	<group colspan="2" col="4" attrs="{'readonly': ['|', ('recurrent_uid','!=',False), ('state','=','done')]}" position="replace"/>
 	        	<page string="Invitation Detail" position="replace"/>
+
+
 	        	<field name="user_id" position="after">
-	        		<field name="tipo" string="Tipo"/>
+	        		<field name="cliente" string="Cliente"/>
 	        	</field>
+
+
 	        	<field name="section_id" position="replace"/>
 	        	<separator string="Visibility" position="replace"/>
 	        	<field name="class" position="replace"/>
 	        	<field name="show_as" position="replace"/>
 	        </field>
-	    </record>
+	    </record> -->
 
 	    <delete model="ir.values" search="[('name','=','action_partner_sms_send')]"/>
 	    <delete model="ir.values" search="[('name','=','base.action_partner_mass_mail')]"/>

@@ -45,8 +45,6 @@ class res_partner(osv.osv):
 
     }
 
-    def onchange_control_alarma(self, cr, uid, ids, control_alarma):
-        return {'warning': {'title': 'AVISO', 'message': 'WEEEE'}}
 
     def crear_nota_desde_cliente(self, cr, uid, ids, context=None):
         """
@@ -153,10 +151,23 @@ class maquipal_calendario(osv.osv):
     _columns = {
         #'ultima_visita': fields.function(get_fecha_ultima_visita, type='char', size=64, method=True),
         #'proxima_visita': fields.function(get_fecha_ultima_visita, type='char', size=64, method=True),
-        'visitas': fields.one2many('crm.meeting', 'partner_id', 'Visitas'),
-        'tipo': fields.selection([('visita', 'Visita'), ('llamada', 'Llamada')], 'Tipo'),
+        #'visitas': fields.one2many('crm.meeting', 'partner_id', 'Visitas'),
+        #'tipo': fields.selection([('visita', 'Visita'), ('llamada', 'Llamada')], 'Tipo'),
+        'cliente': fields.char('Cliente', size=64),
+        'contacto': fields.char('Contacto', size=64),
+        'phone': fields.char('Telefono', size=64),
+        'mobile': fields.char('Movil', size=64),
+        'nota': fields.char('Nota', size=64),
+        'fecha_inicio': fields.date('Fecha inicio'),
+        'datos': fields.text('Datos'),
+        'estado': fields.selection([
+                ('pendiente', 'Pendiente'),
+                ('hecho', 'Hecho')], 'Estado', select=True),
         }
     _order = "date desc"
+    _defaults = {
+        'estado': 'pendiente',
+    }
 
 maquipal_calendario()
 
