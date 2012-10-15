@@ -191,7 +191,7 @@ class maquipal_nota(osv.osv):
         'fecha_inicio': fields.date('Fecha inicio', readonly=True, select=True),
         'fecha_final': fields.date('Fecha final', readonly=True),
         #'fecha_contestacion': fields.date('Fecha contestacion'),
-        'tema': fields.char('Tema', size=64, required=True, select=True),
+        'tema': fields.char('Tema', size=64, select=True),
         'datos': fields.text('Datos'),
         'tipo': fields.selection([('pedido', 'Pedido'), ('consulta', 'Consulta')], 'Tipo', select=True),
         'comentarios': fields.text('Comentarios'),
