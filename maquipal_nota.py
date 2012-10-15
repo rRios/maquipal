@@ -258,7 +258,8 @@ class maquipal_nota(osv.osv):
         for this in self.browse(cr, uid, ids, context=context):
             #pdb.set_trace()
             new_meeting = meeting_obj.create(cr, uid, {
-                    'name': this.tema,
+                    #'name': this.tema,
+                    'name': this.id,
                     'cliente': this.cliente_id.name,
                     'partner_id': this.cliente_id.id,
                     'partner_address_id': this.cliente_id.address[0].id,
